@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "866822655272",
+    "firebase_url": "https://stay-awake-f4a08.firebaseio.com",
+    "project_id": "stay-awake-f4a08",
+    "storage_bucket": "stay-awake-f4a08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866822655272:android:dceaaa04d30ee59bd1d41d",
+        "android_client_info": {
+          "package_name": "com.sudoajay.stayawake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866822655272-e05jr11qrq1v4d3slrbhb2u6d0to3mmp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sudoajay.stayawake",
+            "certificate_hash": "76a725010c7a7213bf6511960e6393c4299e865e"
+          }
+        },
+        {
+          "client_id": "866822655272-m4jvag6v97ockhdrgq3e2e7operkoitb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEw4Wj_0r2JylMAI-SAk8dATzNaFBfDic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866822655272-m4jvag6v97ockhdrgq3e2e7operkoitb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

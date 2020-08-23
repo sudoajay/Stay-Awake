@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Stay Awake</string>
+
+<!--    Notification Channel-->
+    <string name="notifications_group_service">Service control</string>
+    <string name="firebase_channel_id" >Push Notification</string>
+    <string name="msg_token_fmt" >InstanceID Token: %s</string>
+
+<!--    Delete Cache-->
+    <string name="successfully_cache_data_is_deleted_text">Successfully Cache Data Is Deleted</string>
+
+
 </resources>
