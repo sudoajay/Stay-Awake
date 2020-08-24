@@ -5,6 +5,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:fontFamily">@font/lato</item>
+
+        <!--        Modified Attr for Dark Mode Effect-->
+        <item name="mainBgColor">@color/mainBgColor</item>
+        <item name="headingNormalTextColor">@color/headingNormalTextColor</item>
+        <item name="fadeTextColor">@color/fadeTextColor</item>
     </style>
 
 </resources>

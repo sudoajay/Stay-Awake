@@ -4,6 +4,12 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <!--    Modify  App Theme Color -->
+    <color name="mainBgColor">#ffffff</color>
+    <color name="headingNormalTextColor">#353131</color>
+    <color name="fadeTextColor">#5C5757</color>
+
+
     <!--Toast Color Background and text Color-->
     <color name="toastBackgroundColor">@android:color/black</color>
     <color name="toastTextColor">#D6D1D1</color>

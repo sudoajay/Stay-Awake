@@ -8,7 +8,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.sudoajay.stayawake.MainActivity
+import com.sudoajay.stayawake.activity.main.MainActivity
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.helper.NotificationChannels
 
