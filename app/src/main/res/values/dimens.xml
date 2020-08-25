@@ -2,7 +2,10 @@
 <resources>
 
     <!--    Insert Divider-->
-
     <dimen name="bootom_sheet_padding_bottom">32dp</dimen>
+
+    <!--    BottomAppBar-->
+    <dimen name="toolbar_heigth">60dp</dimen>
+    <dimen name="toolbar_title_size">24sp</dimen>
 
 </resources>

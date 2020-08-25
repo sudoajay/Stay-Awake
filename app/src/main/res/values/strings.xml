@@ -18,6 +18,12 @@
     <string name="set_by_battery_saver_trans_text">Set by battery saver</string>
     <string name="system_default_trans_text">System Default</string>
 
+    <!--  MainActivity  Bottom Toolbar-->
+    <string name="darkMode_optionMenu">Dark Mode</string>
+    <!--    Option menu-->
+
+    <string name="refresh_optionMenu">Refresh</string>
+    <string name="more_setting_optionMenu">More Setting</string>
 
     <!--    No Trans-->
 
