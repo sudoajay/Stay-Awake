@@ -3,6 +3,7 @@ package com.sudoajay.stayawake.activity.main
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
@@ -31,6 +32,29 @@ class MainActivity : BaseActivity() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+
+
+    }
+
+    override fun onResume() {
+
+        binding.stayAwakeFloatingActionButton.setOnClickListener {
+
+        }
+
+        super.onResume()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {}
+            R.id.darkMode_optionMenu -> showDarkMode()
+            R.id.refresh_optionMenu -> {}
+            R.id.more_setting_optionMenu -> {}
+            else -> return super.onOptionsItemSelected(item)
+        }
+
+        return true
     }
 
     private fun showDarkMode() {

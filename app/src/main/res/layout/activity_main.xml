@@ -47,6 +47,15 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/stayAwake_floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_stay_awake_off"
+            app:backgroundTint="?attr/bgBoxColor"
+            app:fabSize="normal"
+            app:layout_anchor="@id/bottomAppBar"
+            app:tint="?attr/primaryAppColor" />
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             style="@style/Widget.MaterialComponents.BottomAppBar"

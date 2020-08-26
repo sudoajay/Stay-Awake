@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fa9f1e</color>
-    <color name="colorPrimaryDark">#f7931e</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryDark">#1e5397</color>
+    <color name="colorPrimary">#376db6</color>
+    <color name="colorAccent">#376db6</color>
+
 
     <!--    Modify  App Theme Color -->
+    <color name="primaryAppColor">#376db6</color>
     <color name="mainBgColor">#ffffff</color>
     <color name="headingNormalTextColor">#353131</color>
     <color name="fadeTextColor">#5C5757</color>
