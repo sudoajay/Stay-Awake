@@ -45,6 +45,69 @@
                     tools:ignore="RtlSymmetry" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
+        <ScrollView
+            android:id="@+id/main_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/toolbar_heigth"
+                android:layout_marginBottom="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/flashlight_btn"
+                    android:layout_width="@dimen/main_button_size"
+                    android:layout_height="@dimen/main_button_size"
+                    android:background="@drawable/flashligth_off"
+                    app:layout_constraintBottom_toTopOf="@+id/sos_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.48000002" />
+
+                <TextView
+                    android:id="@+id/sos_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/activity_margin"
+                    android:text="@string/sos_text"
+                    android:textSize="@dimen/sos_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/stroboscope_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.501"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/flashlight_btn" />
+
+                <ImageView
+                    android:id="@+id/stroboscope_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/display_controller"
+                    android:padding="@dimen/activity_margin"
+                    app:layout_constraintBottom_toTopOf="@+id/seekBar1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
+
+                <SeekBar
+                    android:id="@+id/seekBar1"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="50"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

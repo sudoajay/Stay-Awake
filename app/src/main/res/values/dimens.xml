@@ -8,4 +8,10 @@
     <dimen name="toolbar_heigth">60dp</dimen>
     <dimen name="toolbar_title_size">24sp</dimen>
 
+<!--    main Activity-->
+    <dimen name="main_button_size">150dp</dimen>
+    <dimen name="sos_text_size">26sp</dimen>
+    <dimen name="normal_margin">12dp</dimen>
+    <dimen name="activity_margin">16dp</dimen>
+
 </resources>
