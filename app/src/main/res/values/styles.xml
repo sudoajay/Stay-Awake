@@ -15,6 +15,7 @@
         <item name="fadeTextColor">@color/fadeTextColor</item>
         <item name="bgBoxColor">@color/mainBgColor</item>
         <item name="bottomItemTintColor">@color/bottomItemTintColor</item>
+        <item name="mainItemColor">@color/mainItemColor</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

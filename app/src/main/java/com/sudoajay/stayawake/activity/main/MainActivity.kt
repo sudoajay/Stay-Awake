@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.sudoajay.stayawake.R
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity() {
     private var isDarkTheme: Boolean = false
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
+    private var Tag = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isDarkTheme = isDarkMode(applicationContext)
@@ -33,24 +35,102 @@ class MainActivity : BaseActivity() {
         binding.lifecycleOwner = this
 
 
-
     }
 
     override fun onResume() {
+        setItemColor()
+        super.onResume()
+    }
 
-        binding.stayAwakeFloatingActionButton.setOnClickListener {
+    private fun setItemColor() {
 
+        viewModel.flashLight.observe(this, {
+            if (it) {
+                binding.flashlightImageView.setColorFilter(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.primaryAppColorNight else R.color.primaryAppColorNoNight
+
+                    )
+                )
+            } else {
+                binding.flashlightImageView.setColorFilter(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.mainItemColorNight else R.color.mainItemColorNoNight
+                    )
+                )
+            }
+
+        })
+
+        viewModel.sos.observe(this, {
+
+            if (it) {
+                binding.sosTextView.setTextColor(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.primaryAppColorNight else R.color.primaryAppColorNoNight
+
+                    )
+                )
+            } else {
+                binding.sosTextView.setTextColor(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.mainItemColorNight else R.color.mainItemColorNoNight
+                    )
+                )
+            }
+
+        })
+
+        viewModel.displayController.observe(this, {
+            if (it) {
+                binding.displayControllerImageView.setColorFilter(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.primaryAppColorNight else R.color.primaryAppColorNoNight
+
+                    )
+                )
+            } else {
+                binding.displayControllerImageView.setColorFilter(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.mainItemColorNight else R.color.mainItemColorNoNight
+                    )
+                )
+            }
+
+        })
+
+
+
+        //         Setup BottomAppBar Navigation Setup
+        binding.bottomAppBar.navigationIcon?.mutate()?.let {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                it.setTint(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.navigationIconDarkColor else R.color.navigationIconColor
+                    )
+                )
+            }
+            binding.bottomAppBar.navigationIcon = it
         }
 
-        super.onResume()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> {}
+            android.R.id.home -> {
+            }
             R.id.darkMode_optionMenu -> showDarkMode()
-            R.id.refresh_optionMenu -> {}
-            R.id.more_setting_optionMenu -> {}
+            R.id.refresh_optionMenu -> {
+            }
+            R.id.more_setting_optionMenu -> {
+            }
             else -> return super.onOptionsItemSelected(item)
         }
 

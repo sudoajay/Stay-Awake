@@ -33,7 +33,7 @@
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
+                    android:text=""
                     android:textColor="?attr/headingNormalTextColor"
                     android:textSize="@dimen/toolbar_title_size"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -45,69 +45,67 @@
                     tools:ignore="RtlSymmetry" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
-        <ScrollView
-            android:id="@+id/main_scrollview"
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_marginTop="@dimen/toolbar_heigth"
+            android:layout_marginBottom="?attr/actionBarSize">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/main_holder"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/flashlight_ImageView"
+                android:layout_width="@dimen/main_button_size"
+                android:layout_height="@dimen/main_button_size"
+                android:layout_marginTop="32dp"
+                android:onClick="@{() ->viewmodel.setFlashlight()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_flashlight" />
+
+            <TextView
+                android:id="@+id/sos_TextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/toolbar_heigth"
-                android:layout_marginBottom="?attr/actionBarSize">
+                android:layout_marginTop="32dp"
+                android:padding="@dimen/activity_margin"
+                android:text="@string/sos_text"
+                android:textSize="@dimen/sos_text_size"
+                android:textStyle="bold"
+                android:onClick="@{() ->viewmodel.setSos()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flashlight_ImageView" />
 
-                <ImageView
-                    android:id="@+id/flashlight_btn"
-                    android:layout_width="@dimen/main_button_size"
-                    android:layout_height="@dimen/main_button_size"
-                    android:background="@drawable/flashligth_off"
-                    app:layout_constraintBottom_toTopOf="@+id/sos_btn"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.48000002" />
+            <ImageView
+                android:id="@+id/displayController_ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:padding="@dimen/activity_margin"
+                android:onClick="@{() ->viewmodel.setDisplayController()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sos_TextView"
+                app:srcCompat="@drawable/ic_display"
+                />
 
-                <TextView
-                    android:id="@+id/sos_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/activity_margin"
-                    android:text="@string/sos_text"
-                    android:textSize="@dimen/sos_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/stroboscope_btn"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.501"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/flashlight_btn" />
-
-                <ImageView
-                    android:id="@+id/stroboscope_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/display_controller"
-                    android:padding="@dimen/activity_margin"
-                    app:layout_constraintBottom_toTopOf="@+id/seekBar1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
-
-                <SeekBar
-                    android:id="@+id/seekBar1"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:max="100"
-                    android:progress="50"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+            <SeekBar
+                android:id="@+id/display_SeekBar"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:max="100"
+                android:progress="50"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/displayController_ImageView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -118,7 +116,7 @@
             app:backgroundTint="?attr/bgBoxColor"
             app:fabSize="normal"
             app:layout_anchor="@id/bottomAppBar"
-            app:tint="?attr/primaryAppColor" />
+            app:tint="?attr/bottomItemTintColor" />
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             style="@style/Widget.MaterialComponents.BottomAppBar"

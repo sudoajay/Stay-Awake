@@ -36,5 +36,6 @@
     <string name="set_by_battery_saver_text" translatable="false">Set by battery saver</string>
     <string name="system_default_text" translatable="false">System Default</string>
     <string name="sos_text">SOS</string>
+    <string name="home_text">Home</string>
 
 </resources>
