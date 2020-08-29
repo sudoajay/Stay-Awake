@@ -3,16 +3,22 @@ package com.sudoajay.stayawake.activity.main
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.BaseActivity
 import com.sudoajay.stayawake.databinding.ActivityMainBinding
+import com.sudoajay.stayawake.helper.CustomToast
 import com.sudoajay.stayawake.helper.DarkModeBottomSheet
+import java.util.*
 
 class MainActivity : BaseActivity() {
     private var isDarkTheme: Boolean = false
@@ -94,6 +100,8 @@ class MainActivity : BaseActivity() {
 
                     )
                 )
+
+                binding.displaySeekBar.visibility = View.VISIBLE
             } else {
                 binding.displayControllerImageView.setColorFilter(
                     ContextCompat.getColor(
@@ -101,8 +109,30 @@ class MainActivity : BaseActivity() {
                         if (isDarkTheme) R.color.mainItemColorNight else R.color.mainItemColorNoNight
                     )
                 )
+
+                binding.displaySeekBar.visibility = View.GONE
             }
 
+        })
+
+        viewModel.stayAwake.observe(this, {
+            binding.stayAwakeFloatingActionButton.setImageResource( if(it)R.drawable.ic_stay_awake_on else R.drawable.ic_stay_awake_off)
+            if (it) {
+                binding.stayAwakeFloatingActionButton.setColorFilter(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.primaryAppColorNight else R.color.primaryAppColorNoNight
+
+                    )
+                )
+            } else {
+                binding.stayAwakeFloatingActionButton.setColorFilter(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        if (isDarkTheme) R.color.mainItemColorNight else R.color.navigationIconColor
+                    )
+                )
+            }
         })
 
 
@@ -120,15 +150,19 @@ class MainActivity : BaseActivity() {
             binding.bottomAppBar.navigationIcon = it
         }
 
+
+        setSupportActionBar(binding.bottomAppBar)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         when (item.itemId) {
             android.R.id.home -> {
             }
             R.id.darkMode_optionMenu -> showDarkMode()
-            R.id.refresh_optionMenu -> {
-            }
+
+            R.id.refresh_optionMenu -> showDarkMode()
+
             R.id.more_setting_optionMenu -> {
             }
             else -> return super.onOptionsItemSelected(item)
@@ -137,7 +171,15 @@ class MainActivity : BaseActivity() {
         return true
     }
 
-    private fun showDarkMode() {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
+
+
+    fun showDarkMode() {
         val darkModeBottomSheet = DarkModeBottomSheet(homeId)
         darkModeBottomSheet.show(
             supportFragmentManager.beginTransaction(),

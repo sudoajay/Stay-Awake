@@ -19,8 +19,6 @@ open class BaseActivity : AppCompatActivity() {
     private var TAG = "BaseActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         currentTheme =
             getDarkMode(
                 applicationContext

@@ -5,6 +5,7 @@
 
     <data>
         <import type="android.view.View"/>
+
         <variable
             name="viewmodel"
             type="com.sudoajay.stayawake.activity.main.MainActivityViewModel" />
@@ -101,7 +102,7 @@
                 android:layout_marginTop="8dp"
                 android:max="100"
                 android:progress="50"
-                android:visibility="gone"
+                android:visibility="@{viewmodel.getDisplayController ? View.VISIBLE :View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/displayController_ImageView" />
@@ -113,10 +114,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_stay_awake_off"
+            android:onClick="@{() ->viewmodel.setStayAwake()}"
             app:backgroundTint="?attr/bgBoxColor"
             app:fabSize="normal"
-            app:layout_anchor="@id/bottomAppBar"
-            app:tint="?attr/bottomItemTintColor" />
+            app:layout_anchor="@id/bottomAppBar" />
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             style="@style/Widget.MaterialComponents.BottomAppBar"
