@@ -25,6 +25,11 @@
     <string name="refresh_optionMenu">Refresh</string>
     <string name="more_setting_optionMenu">More Setting</string>
 
+
+<!--    Toast Information-->
+    <string name="reportIt">There is Error Please Send Feedback through app setting</string>
+    <string name="giveUsPermission">Give us permission for further process</string>
+
     <!--    No Trans-->
 
     <!--    Dark Mode No Trans-->

@@ -1,30 +1,32 @@
 package com.sudoajay.stayawake.activity.main
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.os.PowerManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import android.view.inputmethod.EditorInfo
-import androidx.appcompat.widget.SearchView
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.BaseActivity
 import com.sudoajay.stayawake.databinding.ActivityMainBinding
-import com.sudoajay.stayawake.helper.CustomToast
+import com.sudoajay.stayawake.helper.BrightnessClass
 import com.sudoajay.stayawake.helper.DarkModeBottomSheet
-import java.util.*
+
 
 class MainActivity : BaseActivity() {
     private var isDarkTheme: Boolean = false
-    private lateinit var viewModel: MainActivityViewModel
+    lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
     private var Tag = "MainActivity"
+    private lateinit var brightnessClass: BrightnessClass
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isDarkTheme = isDarkMode(applicationContext)
@@ -44,7 +46,26 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onResume() {
+        brightnessClass = BrightnessClass(this)
+
         setItemColor()
+
+        binding.displaySeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                brightnessClass.updateBrightness(progress)
+
+            }
+        })
+
+
         super.onResume()
     }
 
@@ -101,7 +122,12 @@ class MainActivity : BaseActivity() {
                     )
                 )
 
-                binding.displaySeekBar.visibility = View.VISIBLE
+
+
+                if (brightnessClass.checkSystemWritePermission()) {
+                    brightnessClass.callBeforeEverything()
+                    binding.displaySeekBar.progress = brightnessClass.brightness
+                }
             } else {
                 binding.displayControllerImageView.setColorFilter(
                     ContextCompat.getColor(
@@ -109,14 +135,12 @@ class MainActivity : BaseActivity() {
                         if (isDarkTheme) R.color.mainItemColorNight else R.color.mainItemColorNoNight
                     )
                 )
-
-                binding.displaySeekBar.visibility = View.GONE
             }
 
         })
 
         viewModel.stayAwake.observe(this, {
-            binding.stayAwakeFloatingActionButton.setImageResource( if(it)R.drawable.ic_stay_awake_on else R.drawable.ic_stay_awake_off)
+            binding.stayAwakeFloatingActionButton.setImageResource(if (it) R.drawable.ic_stay_awake_on else R.drawable.ic_stay_awake_off)
             if (it) {
                 binding.stayAwakeFloatingActionButton.setColorFilter(
                     ContextCompat.getColor(
@@ -152,6 +176,7 @@ class MainActivity : BaseActivity() {
 
 
         setSupportActionBar(binding.bottomAppBar)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
