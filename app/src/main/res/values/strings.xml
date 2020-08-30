@@ -1,12 +1,26 @@
 <resources>
     <string name="app_name">Stay Awake</string>
+    <string name="sos_text">SOS</string>
+    <string name="home_text">Home</string>
 
-<!--    Notification Channel-->
+
+<!--    Notification -->
     <string name="notifications_group_service">Service control</string>
     <string name="firebase_channel_id" >Push Notification</string>
+    <string name="stay_awake_channel_id" >Running Service</string>
+    <string name="notification_action_pause">Pause</string>
+    <string name="start_text">Start Stay Awake</string>
+    <string name="stop_text">Stop </string>
+    <string name="stopping_text">Stopping…</string>
     <string name="msg_token_fmt" >InstanceID Token: %s</string>
+    <string name="awake_is_running_text">Awake is running</string>
+    <string name="notifications_paused">Paused service</string>
+    <string name="click_to_open_app_text">Click to open the app </string>
+    <string name="notification_paused_title">Stay Awake paused</string>
+    <string name="notification_paused_text">Tap to resume.</string>
 
-<!--    Delete Cache-->
+
+    <!--    Delete Cache-->
     <string name="successfully_cache_data_is_deleted_text">Successfully Cache Data Is Deleted</string>
 
 
@@ -30,6 +44,12 @@
     <string name="reportIt">There is Error Please Send Feedback through app setting</string>
     <string name="giveUsPermission">Give us permission for further process</string>
 
+
+<!--    Tiles-->
+<!--    Notification-->
+    <string name="notification_channel_name">Awake Notifications</string>
+    <string name="notification_channel_id">awake_channel_id</string>
+
     <!--    No Trans-->
 
     <!--    Dark Mode No Trans-->
@@ -40,7 +60,10 @@
     <string name="automatic_at_sunset_text" translatable="false">Automatic at sunset</string>
     <string name="set_by_battery_saver_text" translatable="false">Set by battery saver</string>
     <string name="system_default_text" translatable="false">System Default</string>
-    <string name="sos_text">SOS</string>
-    <string name="home_text">Home</string>
+
+
+<!--    Notification-->
+    <string name="is_stay_awake_active_text" translatable="false">isStayAwakeActive</string>
+
 
 </resources>

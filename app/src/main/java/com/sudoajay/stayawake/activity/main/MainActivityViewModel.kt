@@ -11,7 +11,6 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     val flashLight: MutableLiveData<Boolean> = MutableLiveData()
     val sos: MutableLiveData<Boolean> = MutableLiveData()
     val displayController: MutableLiveData<Boolean> = MutableLiveData()
-    val stayAwake: MutableLiveData<Boolean> = MutableLiveData()
 
     private val _application = application
     private var flash: FlashlightProvider
@@ -21,7 +20,6 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         loadFlashlight()
         loadDisplayController()
         loadSos()
-        loadStayAwake()
         flash = FlashlightProvider(_application)
         stro = Stroboscope(flash, this)
         stro.startCoroutineTimer()
@@ -68,12 +66,5 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         displayController.value = false
     }
 
-    fun setStayAwake() {
-        stayAwake.value = !stayAwake.value!!
-    }
-
-    private fun loadStayAwake() {
-        stayAwake.value = false
-    }
 
 }

@@ -14,6 +14,8 @@ import com.sudoajay.stayawake.R
 object NotificationChannels {
     private const val GROUP_SERVICE = "com.sudoajay.dnswidget.notifications.service"
     const val PUSH_NOTIFICATION = "com.sudoajay.dnswidget.push.notifications."
+    const val SERVICE_RUNNING = "com.sudoajay.dnswidget.stayAwake.service.running"
+    const val SERVICE_PAUSED = "com.sudoajay.dnswidget.stayAwake.service.paused"
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -40,5 +42,25 @@ object NotificationChannels {
         notificationManager.createNotificationChannel(firebaseChannel)
 
 
+        val stayAwakeChannel = NotificationChannel(
+            SERVICE_RUNNING,
+            context.getString(R.string.stay_awake_channel_id),
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        stayAwakeChannel.description = context.getString(R.string.stay_awake_channel_id)
+        stayAwakeChannel.group = GROUP_SERVICE
+        stayAwakeChannel.setShowBadge(false)
+        notificationManager.createNotificationChannel(stayAwakeChannel)
+
+
+        val pausedChannel = NotificationChannel(
+            SERVICE_PAUSED,
+            context.getString(R.string.notifications_paused),
+            NotificationManager.IMPORTANCE_LOW
+        )
+        pausedChannel.description = context.getString(R.string.notifications_paused)
+        pausedChannel.group = GROUP_SERVICE
+        pausedChannel.setShowBadge(false)
+        notificationManager.createNotificationChannel(pausedChannel)
     }
 }

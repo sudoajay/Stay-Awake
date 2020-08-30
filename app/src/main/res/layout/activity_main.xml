@@ -9,6 +9,9 @@
         <variable
             name="viewmodel"
             type="com.sudoajay.stayawake.activity.main.MainActivityViewModel" />
+        <variable
+            name="mainActivity"
+            type="com.sudoajay.stayawake.activity.main.MainActivity" />
     </data>
 
 
@@ -113,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_stay_awake_off"
-            android:onClick="@{() ->viewmodel.setStayAwake()}"
+            android:onClick="@{() ->mainActivity.onClickStayAwake()}"
             app:backgroundTint="?attr/bgBoxColor"
             app:fabSize="normal"
             app:layout_anchor="@id/bottomAppBar" />
