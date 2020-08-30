@@ -28,6 +28,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.settingActivity.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme" />
+
         <!--        Firebase config-->
         <service
             android:name=".firebase.MyFirebaseMessagingService"

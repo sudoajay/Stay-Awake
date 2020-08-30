@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:fontFamily">@font/lato</item>
+        <item name="android:textColorSecondary">@color/bottomItemTintColor</item>
 
         <!--        Modified Attr for Dark Mode Effect-->
         <item name="primaryAppColor">@color/primaryAppColor</item>

@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.sudoajay.dnswidget.vpnClasses.Command
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.BaseActivity
+import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity
 import com.sudoajay.stayawake.databinding.ActivityMainBinding
 import com.sudoajay.stayawake.helper.BrightnessClass
 import com.sudoajay.stayawake.helper.CustomToast
@@ -59,6 +60,10 @@ class MainActivity : BaseActivity() {
         binding.viewmodel = viewModel
         binding.mainActivity = this
         binding.lifecycleOwner = this
+
+        if (!intent.action.isNullOrEmpty() && intent.action.toString() == settingId) {
+            openMoreSetting()
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationOnCreate(applicationContext)
@@ -218,12 +223,18 @@ class MainActivity : BaseActivity() {
         when (item.itemId) {
             android.R.id.home -> {
             }
+            R.id.display_setting_optionMenu ->
+                startActivityForResult(
+                    Intent(android.provider.Settings.ACTION_DISPLAY_SETTINGS),
+                    OPEN_DISPLAY_SETTING
+                )
+
+
             R.id.darkMode_optionMenu -> showDarkMode()
 
             R.id.refresh_optionMenu -> showDarkMode()
 
-            R.id.more_setting_optionMenu -> {
-            }
+            R.id.more_setting_optionMenu -> openMoreSetting()
             else -> return super.onOptionsItemSelected(item)
         }
 
@@ -235,6 +246,10 @@ class MainActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    private fun openMoreSetting() {
+        val intent = Intent(applicationContext, SettingsActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun showDarkMode() {
         val darkModeBottomSheet = DarkModeBottomSheet(homeId)
@@ -380,7 +395,8 @@ class MainActivity : BaseActivity() {
 
     companion object {
         const val homeId = "home"
-
+        const val settingId = "setting"
         const val PERMISSION_REQUEST_WAKE_LOCK = 0
+        const val OPEN_DISPLAY_SETTING = 10
     }
 }

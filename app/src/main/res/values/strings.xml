@@ -34,13 +34,45 @@
 
     <!--  MainActivity  Bottom Toolbar-->
     <string name="darkMode_optionMenu">Dark Mode</string>
-    <!--    Option menu-->
 
+    <!--    Option menu-->
+    <string name="display_setting_text">Display Setting</string>
     <string name="refresh_optionMenu">Refresh</string>
     <string name="more_setting_optionMenu">More Setting</string>
 
+    <string name="title_activity_settings">Setting</string>
 
-<!--    Toast Information-->
+
+    <!--    Setting Preference-->
+    <string name="system_setting_text">System Settings</string>
+    <string name="use_dark_mode_text">Use Dark Mode</string>
+    <string name="change_language_text">"Change Language "</string>
+    <string name="clear_cache_text">Clear Cache</string>
+    <string name="help_support_text">Help &amp; Support</string>
+    <string name="privacy_policy_text">Privacy Policy</string>
+    <string name="report_a_bug_text">Report A Bug</string>
+    <string name="report_a_bug_summary_text">submit an issue on Github issue page</string>
+    <string name="send_feedback_text">Send Feedback</string>
+    <string name="send_feedback_summary_text">submit feedback to fix the app bug</string>
+    <string name="more_info_text">More Info</string>
+    <string name="share_app_text">Share App</string>
+    <string name="rate_use_text">Rate-Us</string>
+    <string name="more_app_text">More App</string>
+    <string name="about_app_text">About App</string>
+
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="share_app_summary_text">share the play store app link</string>
+    <string name="rate_use_summary_text">express your experience through rating</string>
+    <string name="more_app_summary_text">there is more app out there</string>
+    <string name="about_app_summary_text">open github link</string>
+    <string name="app_setting_text">App Setting</string>
+
+    <!--    Share App-->
+    <string name="shareMessage">Hey, check This App which helps you to Delete Duplicate and Unnecessary Data from the phone -</string>
+
+
+
+    <!--    Toast Information-->
     <string name="reportIt">There is Error Please Send Feedback through app setting</string>
     <string name="giveUsPermission">Give us permission for further process</string>
 
@@ -62,8 +94,11 @@
     <string name="system_default_text" translatable="false">System Default</string>
 
 
+
+
 <!--    Notification-->
     <string name="is_stay_awake_active_text" translatable="false">isStayAwakeActive</string>
+
 
 
 </resources>
