@@ -14,5 +14,15 @@
     <color name="bgBoxColor">#272727</color>
     <color name="bottomItemTintColor">#74A0EE</color>
     <color name="mainItemColor">#dae1e7</color>
+    <color name="boxTextColor">#dae1e7</color>
+    <color name="boxHoverColor">#dae1e7</color>
+    <color name="errorBoxColor">#CF6679</color>
+    <color name="feedbackBoxBgColor">#272727</color>
+    <color name="dialogBgColorInfo">#272727</color>
+
+
+    <!--Toast Color Background and text Color-->
+    <color name="toastBackgroundColor">#272727</color>
+    <color name="toastTextColor">#dae1e7</color>
 
 </resources>

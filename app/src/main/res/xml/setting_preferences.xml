@@ -17,6 +17,16 @@
             app:summary="@string/show_notification_summary_text"
             app:title="@string/show_notification_text" />
 
+        <CheckBoxPreference
+            app:key="start_on_car_dock"
+            app:summary="@string/car_dock_summary_text"
+            app:title="@string/car_dock_text" />
+
+        <CheckBoxPreference
+            app:key="start_on_desk_dock"
+            app:summary="@string/desk_dock_summary_text"
+            app:title="@string/desk_dock_text" />
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/automation_text">

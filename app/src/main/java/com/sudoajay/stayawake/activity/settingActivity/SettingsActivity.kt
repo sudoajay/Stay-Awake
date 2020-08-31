@@ -201,6 +201,36 @@ class SettingsActivity : AppCompatActivity() {
                 return PreferenceManager
                     .getDefaultSharedPreferences(context).getBoolean("start_on_boot", false)
             }
+
+            fun getIsStartOnCharging(context: Context): Boolean {
+                return PreferenceManager
+                    .getDefaultSharedPreferences(context).getBoolean("start_on_charging", false)
+            }
+
+            fun getIsStartOnUsb(context: Context): Boolean {
+                return PreferenceManager
+                    .getDefaultSharedPreferences(context).getBoolean("start_on_usb", false)
+            }
+
+            fun getIsStartOnCarDock(context: Context): Boolean {
+                return PreferenceManager
+                    .getDefaultSharedPreferences(context).getBoolean("start_on_car_dock", false)
+            }
+
+            fun getIsStartOnDeskDock(context: Context): Boolean {
+                return PreferenceManager
+                    .getDefaultSharedPreferences(context).getBoolean("start_on_desk_dock", false)
+            }
+
+            fun getIsStartOnWifi(context: Context): Boolean {
+                return PreferenceManager
+                    .getDefaultSharedPreferences(context).getBoolean("start_on_wifi", false)
+            }
+
+            fun getIsStartOnMobile(context: Context): Boolean {
+                return PreferenceManager
+                    .getDefaultSharedPreferences(context).getBoolean("start_on_mobile", false)
+            }
         }
     }
 }

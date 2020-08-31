@@ -12,8 +12,12 @@
     <color name="fadeTextColor">#5C5757</color>
     <color name="bgBoxColor">#ffffff</color>
     <color name="bottomItemTintColor">#5C5757</color>
+    <color name="boxTextColor">#353131</color>
+    <color name="boxHoverColor">#376db6</color>
+    <color name="errorBoxColor">#F44336</color>
     <color name="mainItemColor">#dae1e7</color>
-
+    <color name="feedbackBoxBgColor">#BEBEBE</color>
+    <color name="dialogBgColorInfo">#2546ABEB</color>
 <!--    no Modify Color-->
     <color name="primaryAppColorNoNight">#376db6</color>
     <color name="primaryAppColorNight">#74A0EE</color>

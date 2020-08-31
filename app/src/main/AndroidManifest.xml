@@ -10,6 +10,8 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -34,6 +36,11 @@
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".activity.sendFeedback.SendFeedback"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
         <!--        Firebase config-->
         <service
             android:name=".firebase.MyFirebaseMessagingService"
@@ -52,6 +59,12 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="android.intent.action.UMS_CONNECTED" />
+                <action android:name="android.intent.action.UMS_DISCONNECTED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
             </intent-filter>
         </receiver>
 

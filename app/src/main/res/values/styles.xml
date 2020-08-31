@@ -17,6 +17,11 @@
         <item name="bgBoxColor">@color/mainBgColor</item>
         <item name="bottomItemTintColor">@color/bottomItemTintColor</item>
         <item name="mainItemColor">@color/mainItemColor</item>
+        <item name="boxTextColor">@color/boxTextColor</item>
+        <item name="boxHoverColor">@color/boxHoverColor</item>
+        <item name="errorBoxColor">@color/errorBoxColor</item>
+        <item name="feedbackBoxBgColor">@color/feedbackBoxBgColor</item>
+        <item name="dialogBgColorInfo">@color/dialogBgColorInfo</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

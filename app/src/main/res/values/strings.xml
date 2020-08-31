@@ -71,6 +71,10 @@
     <string name="connected_usb_summary_text">Screen will never sleep while connecting to usb</string>
     <string name="power_charging_text">Power(Charging)</string>
     <string name="power_charging_summary_text">Screen will never sleep while Charging</string>
+    <string name="desk_dock_text">Desk Dock</string>
+    <string name="desk_dock_summary_text">Screen will never sleep while connecting to desk dock</string>
+    <string name="car_dock_text">Car Dock</string>
+    <string name="car_dock_summary_text">Screen will never sleep while connecting to car dock</string>
     <string name="show_notification_text">Show notification</string>
     <string name="show_notification_summary_text">Allowing toggel on/off</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
@@ -89,6 +93,22 @@
     <!--    Share App-->
     <string name="shareMessage">Hey, check This App which helps you to Delete Duplicate and Unnecessary Data from the phone -</string>
 
+    <!--    Send Feedback -->
+    <string name="feedbackEditTextHint">Please write your feedback</string>
+    <string name="feedbackEditTextError">Please write something in feedback</string>
+    <string name="systemInfo_text">Your System Info will be send to our developer team</string>
+    <string name="add_screenshot_text">+ Add Screenshot</string>
+    <string name="ok_text">OK</string>
+    <!--    System Info-->
+    <string name="system_info_text"> System Info </string>
+    <string name="device_text">Device : </string>
+    <string name="os_api_level_text">Os Api Level : </string>
+    <string name="app_version_text">App Version : </string>
+    <string name="language_text">Language : </string>
+    <string name="total_memory_text">Total Heap Memory : </string>
+    <string name="free_memory_text">Free Heap Memory : </string>
+    <string name="screen_Text">Screen Size : </string>
+    <string name="network_type_text">Network Type : </string>
 
 
     <!--    Toast Information-->
@@ -100,6 +120,8 @@
 <!--    Notification-->
     <string name="notification_channel_name">Awake Notifications</string>
     <string name="notification_channel_id">awake_channel_id</string>
+
+
 
     <!--    No Trans-->
 

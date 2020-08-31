@@ -276,7 +276,7 @@ class StayAwakeService : Service() {
             "vyan.alwaysonwidget.services.StayAwakeService.EXTRA_STAY_AWAKE_STATE" // Boolean extra
 
 
-        fun checkStartVpnOnBoot(context: Context) {
+        fun startTheService(context: Context) {
             Log.i("BOOT", "Checking whether to start ad buster on boot")
 
             if (context.getSharedPreferences("state", Context.MODE_PRIVATE)
@@ -300,6 +300,27 @@ class StayAwakeService : Service() {
         private fun getStartIntent(context: Context): Intent {
             val intent = Intent(context, StayAwakeService::class.java)
             intent.putExtra("COMMAND", Command.START.ordinal)
+            return intent
+        }
+
+        fun stopTheService(context: Context){
+            if (!context.getSharedPreferences("state", Context.MODE_PRIVATE)
+                    .getBoolean(context.getString(R.string.is_stay_awake_active_text), false)
+            ) {
+                return
+            }
+
+            val intent = getStopIntent(context)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(intent)
+            } else {
+                context.startService(intent)
+            }
+        }
+
+        private fun getStopIntent(context: Context): Intent {
+            val intent = Intent(context, StayAwakeService::class.java)
+            intent.putExtra("COMMAND", Command.STOP.ordinal)
             return intent
         }
     }
