@@ -12,9 +12,9 @@
         android:id="@+id/display_setting_optionMenu"
         android:title="@string/display_setting_text" />
     <item
-        android:id="@+id/refresh_optionMenu"
-        android:title="@string/refresh_optionMenu" />
+        android:id="@+id/default_setting_optionMenu"
+        android:title="@string/default_setting_optionMenu" />
     <item
-        android:id="@+id/more_setting_optionMenu"
-        android:title="@string/more_setting_optionMenu" />
+        android:id="@+id/more_app_setting_optionMenu"
+        android:title="@string/more_app_setting_optionMenu" />
 </menu>

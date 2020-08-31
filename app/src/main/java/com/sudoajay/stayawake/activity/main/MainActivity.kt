@@ -221,24 +221,40 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            android.R.id.home -> {
-            }
+            android.R.id.home ->showNavigationDrawer()
             R.id.display_setting_optionMenu ->
                 startActivityForResult(
                     Intent(android.provider.Settings.ACTION_DISPLAY_SETTINGS),
                     OPEN_DISPLAY_SETTING
                 )
-
-
             R.id.darkMode_optionMenu -> showDarkMode()
 
-            R.id.refresh_optionMenu -> showDarkMode()
+            R.id.default_setting_optionMenu -> {
+                viewModel.defaultSetting()
+                defaultValue()
+            }
 
-            R.id.more_setting_optionMenu -> openMoreSetting()
+            R.id.more_app_setting_optionMenu -> openMoreSetting()
             else -> return super.onOptionsItemSelected(item)
         }
 
         return true
+    }
+
+    private fun showNavigationDrawer(){
+        val navigationDrawerBottomSheet = NavigationDrawerBottomSheet()
+        navigationDrawerBottomSheet.show(supportFragmentManager, navigationDrawerBottomSheet.tag)
+    }
+
+    private fun defaultValue() {
+        val isStayAwakeActive = getSharedPreferences(
+            "state",
+            Context.MODE_PRIVATE
+        ).getBoolean(getString(R.string.is_stay_awake_active_text), false)
+
+        if (isStayAwakeActive) stopService()
+        callStayAwakeFun(false)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

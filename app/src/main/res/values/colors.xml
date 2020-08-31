@@ -30,4 +30,8 @@
     <!--Toast Color Background and text Color-->
     <color name="toastBackgroundColor">@android:color/black</color>
     <color name="toastTextColor">#D6D1D1</color>
+
+    <!--    Divider Color-->
+    <color name="divider">#E6E6E6</color>
+
 </resources>

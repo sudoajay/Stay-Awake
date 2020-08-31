@@ -2,6 +2,7 @@
     <string name="app_name">Stay Awake</string>
     <string name="sos_text">SOS</string>
     <string name="home_text">Home</string>
+    <string name="developer_name">Created by Sudo Ajay</string>
 
 
 <!--    Notification -->
@@ -37,8 +38,8 @@
 
     <!--    Option menu-->
     <string name="display_setting_text">Display Setting</string>
-    <string name="refresh_optionMenu">Refresh</string>
-    <string name="more_setting_optionMenu">More Setting</string>
+    <string name="default_setting_optionMenu">Default Setting</string>
+    <string name="more_app_setting_optionMenu">More App Setting</string>
 
     <string name="title_activity_settings">Setting</string>
 

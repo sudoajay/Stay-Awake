@@ -66,5 +66,10 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         displayController.value = false
     }
 
+    fun defaultSetting(){
+        flashLight.value = false
+        sos.value = false
+        displayController.value= false
+    }
 
 }

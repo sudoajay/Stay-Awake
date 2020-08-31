@@ -40,6 +40,12 @@
             app:summary="@string/start_mobile_summary_text"
             app:title="@string/automatically_start_mobile_text" />
 
+        <CheckBoxPreference
+            app:defaultValue="true"
+            app:key="show_notification"
+            app:summary="@string/show_notification_summary_text"
+            app:title="@string/show_notification_text" />
+
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/app_setting_text">
         <Preference
@@ -53,15 +59,13 @@
             android:key="changeLanguage"
             android:title="@string/change_language_text" />
 
+
+
         <Preference
             app:key="clearCache"
             app:title="@string/clear_cache_text" />
 
-        <CheckBoxPreference
-            app:defaultValue="true"
-            app:key="show_notification"
-            app:summary="@string/show_notification_summary_text"
-            app:title="@string/show_notification_text" />
+
 
     </PreferenceCategory>
 

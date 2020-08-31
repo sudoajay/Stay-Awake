@@ -14,4 +14,9 @@
     <dimen name="normal_margin">12dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
 
+<!--    Navigation bottomSheet dialog-->
+    <dimen name="text_view_margin_gap">12dp</dimen>
+    <dimen name="gap_margin_left_right">16dp</dimen>
+    <dimen name="divider_height">0.8dp</dimen>
+
 </resources>
