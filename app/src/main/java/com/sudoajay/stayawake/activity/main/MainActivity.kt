@@ -61,9 +61,8 @@ class MainActivity : BaseActivity() {
         binding.mainActivity = this
         binding.lifecycleOwner = this
 
-        if (!intent.action.isNullOrEmpty() && intent.action.toString() == settingId) {
-            openMoreSetting()
-        }
+        if (!intent.action.isNullOrEmpty() && intent.action== settingId)
+          openMoreSetting()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationOnCreate(applicationContext)
@@ -91,12 +90,9 @@ class MainActivity : BaseActivity() {
             }
         })
 
-        val isStayAwakeActive = getSharedPreferences(
-            "state",
-            Context.MODE_PRIVATE
-        ).getBoolean(getString(R.string.is_stay_awake_active_text), false)
+        viewModel.flashLight.value = isFlashActive(applicationContext)
 
-        callStayAwakeFun(isStayAwakeActive)
+        callStayAwakeFun(isStayAwakeActive(applicationContext))
 
         super.onResume()
     }
@@ -194,15 +190,6 @@ class MainActivity : BaseActivity() {
     fun onClickStayAwake() {
         val newIt = binding.stayAwakeFloatingActionButton.drawable.constantState ==
                 ContextCompat.getDrawable(this, R.drawable.ic_stay_awake_on)!!.constantState
-        val isStayAwakeActive = getSharedPreferences(
-            "state",
-            Context.MODE_PRIVATE
-        ).getBoolean(getString(R.string.is_stay_awake_active_text), false)
-
-        Log.e(
-            TAG, newIt.toString() + " new it ==  " + isStayAwakeActive.toString() + " ----" +
-                    " " + checkAndRequestWakeLockPermission().toString()
-        )
 
         if (!checkAndRequestWakeLockPermission()) {
             callStayAwakeFun(false)
@@ -211,8 +198,8 @@ class MainActivity : BaseActivity() {
 
         callStayAwakeFun(newIt)
 
-        if (!newIt && !isStayAwakeActive) startService()
-        else if (!newIt && isStayAwakeActive) stopService()
+        if (!newIt && !isStayAwakeActive(applicationContext)) startService()
+        else if (!newIt && isStayAwakeActive(applicationContext)) stopService()
 
 
     }
@@ -247,12 +234,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun defaultValue() {
-        val isStayAwakeActive = getSharedPreferences(
-            "state",
-            Context.MODE_PRIVATE
-        ).getBoolean(getString(R.string.is_stay_awake_active_text), false)
 
-        if (isStayAwakeActive) stopService()
+
+        if (isStayAwakeActive(applicationContext)) stopService()
         callStayAwakeFun(false)
 
     }
@@ -410,9 +394,29 @@ class MainActivity : BaseActivity() {
     }
 
     companion object {
-        const val homeId = "home"
-        const val settingId = "setting"
+        const val homeId = "homeShortcut"
+        const val settingId = "settingShortcut"
+        const val startFlashId = "startFlashShortcut"
+        const val stopFlashId = "stopFlashShortcut"
+        const val startStayAwakeId = "startStayAwakeShortcut"
+        const val stopStayAwakeId = "stopStayAwakeShortcut"
+
+
         const val PERMISSION_REQUEST_WAKE_LOCK = 0
         const val OPEN_DISPLAY_SETTING = 10
+
+        fun isStayAwakeActive(context: Context): Boolean {
+            return context.getSharedPreferences(
+                "state",
+                Context.MODE_PRIVATE
+            ).getBoolean(context.getString(R.string.is_stay_awake_active_text), false)
+        }
+
+        fun isFlashActive(context: Context): Boolean {
+            return context.getSharedPreferences(
+                "state",
+                Context.MODE_PRIVATE
+            ).getBoolean(context.getString(R.string.is_flash_active_text), false)
+        }
     }
 }

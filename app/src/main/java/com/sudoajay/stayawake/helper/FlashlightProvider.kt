@@ -6,23 +6,25 @@ import android.content.Context
 import android.hardware.Camera
 import android.hardware.camera2.CameraManager
 import android.os.Build
+import com.sudoajay.stayawake.R
 
 class FlashlightProvider(private val context: Context) {
     private var mCamera: Camera? = null
     private var parameters: Camera.Parameters? = null
     private var camManager: CameraManager? = null
     fun turnFlashlightOn(): Boolean {
+        var isFlashOn: Boolean
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return try {
+            try {
                 camManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
                 val cameraId: String?
                 if (camManager != null) {
                     cameraId = camManager!!.cameraIdList[0]
                     camManager!!.setTorchMode(cameraId, true)
                 }
-                true
+                isFlashOn = true
             } catch (e: Exception) {
-                false
+                isFlashOn = false
             }
         } else {
             mCamera = Camera.open()
@@ -30,13 +32,16 @@ class FlashlightProvider(private val context: Context) {
             parameters!!.flashMode = Camera.Parameters.FLASH_MODE_TORCH
             mCamera!!.parameters = parameters
             mCamera!!.startPreview()
-            return true
+            isFlashOn = true
         }
+        setValue(isFlashOn)
+        return isFlashOn
     }
 
     fun turnFlashlightOff(): Boolean {
+        var isFlashOn: Boolean
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return try {
+            try {
                 val cameraId: String
                 camManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
                 if (camManager != null) {
@@ -44,9 +49,9 @@ class FlashlightProvider(private val context: Context) {
                         camManager!!.cameraIdList[0] // Usually front camera is at 0 position.
                     camManager!!.setTorchMode(cameraId, false)
                 }
-                false
+                isFlashOn = false
             } catch (e: Exception) {
-                true
+                isFlashOn = true
             }
         } else {
             mCamera = Camera.open()
@@ -54,25 +59,18 @@ class FlashlightProvider(private val context: Context) {
             parameters!!.flashMode = Camera.Parameters.FLASH_MODE_OFF
             mCamera!!.parameters = parameters
             mCamera!!.stopPreview()
-            return false
+            isFlashOn = false
         }
+        setValue(isFlashOn)
+        return isFlashOn
     }
 
-    fun flashStatus(): Boolean {
-        mCamera = Camera.open()
-        val parameters: Camera.Parameters = mCamera!!.parameters
-        if (parameters.flashMode === "FLASH_MODE_TORCH") {
-            return true
-        }
-        if (parameters.flashMode === "FLASH_MODE_OFF") {
-            return false
-        }
-        return false
+
+    private fun setValue(value: Boolean) {
+        context.getSharedPreferences("state", Context.MODE_PRIVATE).edit()
+            .putBoolean(context.getString(R.string.is_flash_active_text), value).apply()
     }
 
-    companion object {
-        private val TAG = FlashlightProvider::class.java.simpleName
-    }
 
 
 }

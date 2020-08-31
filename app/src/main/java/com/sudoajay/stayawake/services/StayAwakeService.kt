@@ -34,37 +34,6 @@ class StayAwakeService : Service() {
     private var notification: Notification? = null
     var stayAwakeStatus = MutableLiveData<Boolean>()
 
-    private val networkChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            when (ConnectivityType.getNetworkProvider(context!!)) {
-
-                context.getString(R.string.vpn_text) -> Log.i(
-                    TAG,
-                    "Ignoring connectivity changed for our own network"
-                )
-                context.getString(R.string.no_internet_text) -> {
-                    Log.i(TAG, "No Network Connection")
-
-                    if (intent!!.getBooleanExtra(
-                            ConnectivityManager.EXTRA_NO_CONNECTIVITY,
-                            false
-                        )
-                    ) {
-                        Log.i(TAG, "Connectivity changed to no connectivity, wait for a network")
-
-                    } else {
-                        Log.i(TAG, "Network changed, try to reconnect")
-                    }
-                }
-                else -> Log.i(
-                    TAG,
-                    ConnectivityType.getNetworkProvider(context)
-                )
-            }
-        }
-
-    }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
 
@@ -145,11 +114,6 @@ class StayAwakeService : Service() {
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             startForeground(NOTIFICATION_ID_STATE, notificationCompat.build())
 
-        registerReceiver(
-            networkChangeReceiver,
-            IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
-        )
-
        startStayAwake()
     }
 
@@ -215,14 +179,6 @@ class StayAwakeService : Service() {
         getSharedPreferences("state", Context.MODE_PRIVATE).edit()
             .putBoolean(getString(R.string.is_stay_awake_active_text), false).apply()
 
-        try {
-            unregisterReceiver(networkChangeReceiver)
-        } catch (e: IllegalArgumentException) {
-            Log.i(
-                TAG,
-                "Ignoring exception on unregistering receiver"
-            )
-        }
         stopStayAwake()
 
     }

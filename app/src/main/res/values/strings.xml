@@ -116,12 +116,18 @@
     <string name="reportIt">There is Error Please Send Feedback through app setting</string>
     <string name="giveUsPermission">Give us permission for further process</string>
 
+<!--    Shortcuts-->
+    <string name="shortcut_setting_text">Setting</string>
+    <string name="shortcut_flash_text">Flashlight</string>
+
 
 <!--    Tiles-->
 <!--    Notification-->
     <string name="notification_channel_name">Awake Notifications</string>
     <string name="notification_channel_id">awake_channel_id</string>
-
+    <!--    My Quick Setting Tile Name-->
+    <string name="added_text">tile added </string>
+    <string name="removed_text">tile removed </string>
 
 
     <!--    No Trans-->
@@ -140,6 +146,7 @@
 
 <!--    Notification-->
     <string name="is_stay_awake_active_text" translatable="false">isStayAwakeActive</string>
+    <string name="is_flash_active_text" translatable="false">isFlashActive</string>
 
 
 

@@ -36,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 android:layout_marginTop="@dimen/text_view_margin_gap"
                 android:layout_marginBottom="@dimen/text_view_margin_gap"
                 android:ellipsize="end"
@@ -47,20 +48,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/appImage_ImageView"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/appImage_ImageView"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 android:src="@mipmap/ic_launcher_round"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toTopOf="@+id/rateUs_ConstraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appInfo_ConstraintLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rateUs_ConstraintLayout"
@@ -81,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 android:layout_marginTop="@dimen/text_view_margin_gap"
                 android:layout_marginBottom="@dimen/text_view_margin_gap"
                 android:ellipsize="end"
@@ -98,13 +110,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_rate_us"
                 app:tint="?attr/headingNormalTextColor"
-                tools:ignore="ContentDescription"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,6 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 android:layout_marginTop="@dimen/text_view_margin_gap"
                 android:layout_marginBottom="@dimen/text_view_margin_gap"
                 android:ellipsize="end"
@@ -136,22 +149,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/moreAppImage_ImageView"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/moreAppImage_ImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_more_app"
                 app:tint="?attr/headingNormalTextColor"
-                tools:ignore="ContentDescription"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toTopOf="@+id/sendFeedback_ConstraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/moreApp_ConstraintLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sendFeedback_ConstraintLayout"
@@ -172,6 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 android:layout_marginTop="@dimen/text_view_margin_gap"
                 android:layout_marginBottom="@dimen/text_view_margin_gap"
                 android:ellipsize="end"
@@ -182,22 +205,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/sendFeedbackImage_ImageView"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/sendFeedbackImage_ImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_send_feedback"
                 app:tint="?attr/headingNormalTextColor"
-                tools:ignore="ContentDescription"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toTopOf="@+id/aboutMe_ConstraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sendFeedback_ConstraintLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/aboutMe_ConstraintLayout"
@@ -218,6 +250,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 android:layout_marginTop="@dimen/text_view_margin_gap"
                 android:layout_marginBottom="@dimen/text_view_margin_gap"
                 android:ellipsize="end"
@@ -228,25 +261,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/aboutMeImage_ImageView"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/aboutMeImage_ImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/gap_margin_left_right"
+                android:layout_marginLeft="@dimen/gap_margin_left_right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_me"
                 app:tint="?attr/headingNormalTextColor"
-                tools:ignore="ContentDescription"
-                android:layout_marginLeft="@dimen/gap_margin_left_right" />
+                tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
-            android:layout_width="fill_parent"
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
             android:layout_marginBottom="12dp"
             android:background="@color/divider"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="settingShortcutId"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:shortcutShortLabel="@string/shortcut_setting_text"
+        android:shortcutLongLabel="@string/shortcut_setting_text"
+        android:shortcutDisabledMessage="@string/shortcut_setting_text">
+        <intent
+            android:action="settingShortcut"
+            android:targetPackage="com.sudoajay.stayawake"
+            android:targetClass="com.sudoajay.stayawake.activity.main.MainActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="startFlashShortcut"
+        android:enabled="true"
+        android:icon="@drawable/ic_flashlight"
+        android:shortcutShortLabel="@string/shortcut_flash_text"
+        android:shortcutLongLabel="@string/shortcut_flash_text"
+        android:shortcutDisabledMessage="@string/shortcut_flash_text">
+        <intent
+            android:action="startFlashShortcut"
+            android:targetPackage="com.sudoajay.stayawake"
+            android:targetClass="com.sudoajay.stayawake.activity.transparent.TransparentClass" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="startStayAwakeShortcut"
+        android:enabled="true"
+        android:icon="@drawable/ic_stay_awake_on"
+        android:shortcutShortLabel="@string/app_name"
+        android:shortcutLongLabel="@string/app_name"
+        android:shortcutDisabledMessage="@string/app_name">
+        <intent
+            android:action="startStayAwakeShortcut"
+            android:targetPackage="com.sudoajay.stayawake"
+            android:targetClass="com.sudoajay.stayawake.activity.transparent.TransparentClass" />
+    </shortcut>
+</shortcuts>
