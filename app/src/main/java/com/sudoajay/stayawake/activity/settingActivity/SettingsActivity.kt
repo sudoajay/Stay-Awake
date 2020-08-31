@@ -12,6 +12,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.main.MainActivity
+import com.sudoajay.stayawake.activity.sendFeedback.SendFeedback
 import com.sudoajay.stayawake.helper.DarkModeBottomSheet
 import com.sudoajay.stayawake.helper.DeleteCache
 import java.util.*
@@ -180,8 +181,8 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(i)
         }
         private fun sendFeedback(){
-//            val intent = Intent(requireContext(), SendFeedback::class.java)
-//            startActivity(intent)
+            val intent = Intent(requireContext(), SendFeedback::class.java)
+            startActivity(intent)
         }
 
 

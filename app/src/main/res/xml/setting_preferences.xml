@@ -11,11 +11,7 @@
             app:key="start_on_charging"
             app:summary="@string/power_charging_summary_text"
             app:title="@string/power_charging_text" />
-        <CheckBoxPreference
-            app:defaultValue="true"
-            app:key="show_notification"
-            app:summary="@string/show_notification_summary_text"
-            app:title="@string/show_notification_text" />
+
 
         <CheckBoxPreference
             app:key="start_on_car_dock"
@@ -60,6 +56,12 @@
         <Preference
             app:key="clearCache"
             app:title="@string/clear_cache_text" />
+
+        <CheckBoxPreference
+            app:defaultValue="true"
+            app:key="show_notification"
+            app:summary="@string/show_notification_summary_text"
+            app:title="@string/show_notification_text" />
 
     </PreferenceCategory>
 
