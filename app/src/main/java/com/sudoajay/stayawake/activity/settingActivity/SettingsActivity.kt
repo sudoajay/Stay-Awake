@@ -196,6 +196,11 @@ class SettingsActivity : AppCompatActivity() {
                 val array = context.resources.getStringArray(R.array.languagesValues)
                 return if (lang in array) lang else "en"
             }
+
+            fun getIsStartOnBoot(context: Context): Boolean {
+                return PreferenceManager
+                    .getDefaultSharedPreferences(context).getBoolean("start_on_boot", false)
+            }
         }
     }
 }

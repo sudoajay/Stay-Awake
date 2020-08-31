@@ -4,8 +4,12 @@ import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import android.net.VpnService
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -17,7 +21,9 @@ import androidx.lifecycle.MutableLiveData
 import com.sudoajay.dnswidget.vpnClasses.Command
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.main.MainActivity
+import com.sudoajay.stayawake.helper.ConnectivityType
 import com.sudoajay.stayawake.helper.NotificationChannels
+import com.sudoajay.stayawake.helper.NotificationChannels.notificationOnCreate
 
 class StayAwakeService : Service() {
 
@@ -28,6 +34,36 @@ class StayAwakeService : Service() {
     private var notification: Notification? = null
     var stayAwakeStatus = MutableLiveData<Boolean>()
 
+    private val networkChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            when (ConnectivityType.getNetworkProvider(context!!)) {
+
+                context.getString(R.string.vpn_text) -> Log.i(
+                    TAG,
+                    "Ignoring connectivity changed for our own network"
+                )
+                context.getString(R.string.no_internet_text) -> {
+                    Log.i(TAG, "No Network Connection")
+
+                    if (intent!!.getBooleanExtra(
+                            ConnectivityManager.EXTRA_NO_CONNECTIVITY,
+                            false
+                        )
+                    ) {
+                        Log.i(TAG, "Connectivity changed to no connectivity, wait for a network")
+
+                    } else {
+                        Log.i(TAG, "Network changed, try to reconnect")
+                    }
+                }
+                else -> Log.i(
+                    TAG,
+                    ConnectivityType.getNetworkProvider(context)
+                )
+            }
+        }
+
+    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
@@ -109,6 +145,10 @@ class StayAwakeService : Service() {
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             startForeground(NOTIFICATION_ID_STATE, notificationCompat.build())
 
+        registerReceiver(
+            networkChangeReceiver,
+            IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
+        )
 
        startStayAwake()
     }
@@ -175,6 +215,14 @@ class StayAwakeService : Service() {
         getSharedPreferences("state", Context.MODE_PRIVATE).edit()
             .putBoolean(getString(R.string.is_stay_awake_active_text), false).apply()
 
+        try {
+            unregisterReceiver(networkChangeReceiver)
+        } catch (e: IllegalArgumentException) {
+            Log.i(
+                TAG,
+                "Ignoring exception on unregistering receiver"
+            )
+        }
         stopStayAwake()
 
     }
@@ -226,5 +274,33 @@ class StayAwakeService : Service() {
             "vyan.alwaysonwidget.services.StayAwakeService.ACTION_STAY_AWAKE_STATE_CHANGED"
         const val EXTRA_STAY_AWAKE_STATE =
             "vyan.alwaysonwidget.services.StayAwakeService.EXTRA_STAY_AWAKE_STATE" // Boolean extra
+
+
+        fun checkStartVpnOnBoot(context: Context) {
+            Log.i("BOOT", "Checking whether to start ad buster on boot")
+
+            if (context.getSharedPreferences("state", Context.MODE_PRIVATE)
+                    .getBoolean(context.getString(R.string.is_stay_awake_active_text), false)
+            ) {
+                return
+            }
+
+            Log.i("BOOT", "Starting ad buster from boot")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notificationOnCreate(context)
+            }
+            val intent = getStartIntent(context)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(intent)
+            } else {
+                context.startService(intent)
+            }
+        }
+
+        private fun getStartIntent(context: Context): Intent {
+            val intent = Intent(context, StayAwakeService::class.java)
+            intent.putExtra("COMMAND", Command.START.ordinal)
+            return intent
+        }
     }
 }

@@ -1,6 +1,40 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <PreferenceCategory app:title="@string/system_setting_text">
+        <CheckBoxPreference
+            app:key="start_on_usb"
+            app:summary="@string/connected_usb_summary_text"
+            app:title="@string/connected_usb_text" />
+        <CheckBoxPreference
+            app:key="start_on_charging"
+            app:summary="@string/power_charging_summary_text"
+            app:title="@string/power_charging_text" />
+        <CheckBoxPreference
+            app:defaultValue="true"
+            app:key="show_notification"
+            app:summary="@string/show_notification_summary_text"
+            app:title="@string/show_notification_text" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/automation_text">
+        <CheckBoxPreference
+            app:key="start_on_boot"
+            app:summary="@string/start_on_boot_summary_text"
+            app:title="@string/start_on_boot_text" />
+
+        <CheckBoxPreference
+            app:key="start_on_wifi"
+            app:summary="@string/start_wifi_summary_text"
+            app:title="@string/automatically_start_wifi_text" />
+        <CheckBoxPreference
+            app:key="start_on_mobile"
+            app:summary="@string/start_mobile_summary_text"
+            app:title="@string/automatically_start_mobile_text" />
+
+    </PreferenceCategory>
     <PreferenceCategory app:title="@string/app_setting_text">
         <Preference
             app:key="useDarkTheme"
