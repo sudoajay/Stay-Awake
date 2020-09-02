@@ -21,11 +21,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
+            android:name=".activity.splashScreen.Splash"
+            android:theme="@style/splashTheme">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
@@ -33,6 +32,9 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.settingActivity.SettingsActivity"
             android:label="@string/title_activity_settings"

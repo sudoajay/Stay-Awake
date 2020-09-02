@@ -32,6 +32,10 @@ import com.sudoajay.stayawake.helper.CustomToast
 import com.sudoajay.stayawake.helper.DarkModeBottomSheet
 import com.sudoajay.stayawake.helper.NotificationChannels.notificationOnCreate
 import com.sudoajay.stayawake.services.StayAwakeService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class MainActivity : BaseActivity() {
@@ -40,6 +44,7 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private var TAG = "MainActivity"
     private lateinit var brightnessClass: BrightnessClass
+    private var doubleBackToExitPressedOnce = false
 
     // Boolean to check if our activity is bound to service or not
     var mIsBound: Boolean = false
@@ -372,13 +377,35 @@ class MainActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
-
         if (mIsBound) {
             applicationContext.unbindService(serviceConnection)
             mIsBound = false
         }
     }
 
+    override fun onBackPressed() {
+        onBack()
+    }
+
+    private fun onBack() {
+        if (doubleBackToExitPressedOnce) {
+            closeApp()
+            return
+        }
+        doubleBackToExitPressedOnce = true
+        CustomToast.toastIt(applicationContext, "Click Back Again To Exit")
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(2000L)
+            doubleBackToExitPressedOnce = false
+        }
+    }
+
+    private fun closeApp() {
+        val homeIntent = Intent(Intent.ACTION_MAIN)
+        homeIntent.addCategory(Intent.CATEGORY_HOME)
+        homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(homeIntent)
+    }
 
     /**
      * Making notification bar transparent

@@ -120,7 +120,7 @@ class StayAwakeService : Service() {
 
     private fun startStayAwake() {
         Log.e(TAG, "Start Wake Lock")
-        wakeLock!!.acquire(1000*60*1000L /*1000 minutes*/)
+        wakeLock!!.acquire(100*60*1000L /*1000 minutes*/)
     }
 
 

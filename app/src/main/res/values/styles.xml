@@ -37,4 +37,13 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+
+    <!-- Base application theme. -->
+    <style name="splashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimarySplash</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkSplash</item>
+        <item name="colorAccent">@color/colorAccentSplash</item>
+    </style>
 </resources>
