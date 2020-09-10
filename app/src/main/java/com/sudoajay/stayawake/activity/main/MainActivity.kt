@@ -10,7 +10,6 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -22,7 +21,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.sudoajay.dnswidget.vpnClasses.Command
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.BaseActivity
 import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity
@@ -30,7 +28,8 @@ import com.sudoajay.stayawake.databinding.ActivityMainBinding
 import com.sudoajay.stayawake.helper.BrightnessClass
 import com.sudoajay.stayawake.helper.CustomToast
 import com.sudoajay.stayawake.helper.DarkModeBottomSheet
-import com.sudoajay.stayawake.helper.NotificationChannels.notificationOnCreate
+import com.sudoajay.stayawake.firebase.NotificationChannels.notificationOnCreate
+import com.sudoajay.stayawake.services.Command
 import com.sudoajay.stayawake.services.StayAwakeService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,7 +41,7 @@ class MainActivity : BaseActivity() {
     private var isDarkTheme: Boolean = false
     lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
-    private var TAG = "MainActivity"
+
     private lateinit var brightnessClass: BrightnessClass
     private var doubleBackToExitPressedOnce = false
 
@@ -55,7 +54,9 @@ class MainActivity : BaseActivity() {
         isDarkTheme = isDarkMode(applicationContext)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!isDarkTheme)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) window.setDecorFitsSystemWindows(
+                    false
+                ) else window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
@@ -317,7 +318,7 @@ class MainActivity : BaseActivity() {
         applicationContext.startService(stopIntent)
 
         if (mIsBound) {
-            Log.e(TAG, " got Unibind")
+
             applicationContext.unbindService(serviceConnection)
             mIsBound = false
         }
@@ -330,7 +331,7 @@ class MainActivity : BaseActivity() {
      */
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, iBinder: IBinder) {
-            Log.d(TAG, "ServiceConnection: connected to service.")
+
             // We've bound to MyService, cast the IBinder and get MyBinder instance
             val binder = iBinder as StayAwakeService.MyBinder
             mService = binder.service
@@ -339,7 +340,7 @@ class MainActivity : BaseActivity() {
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
-            Log.d(TAG, "ServiceConnection: disconnected from service.")
+
             mIsBound = false
         }
     }

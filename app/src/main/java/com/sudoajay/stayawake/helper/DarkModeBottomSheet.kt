@@ -12,7 +12,7 @@ import com.sudoajay.stayawake.activity.main.MainActivity
 import com.sudoajay.stayawake.databinding.LayoutDarkModeBottomSheetBinding
 
 
-class DarkModeBottomSheet(var passAction: String) : BottomSheetDialogFragment() {
+class DarkModeBottomSheet(private var passAction: String) : BottomSheetDialogFragment() {
 
 
     override fun onCreateView(

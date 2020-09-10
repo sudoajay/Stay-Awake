@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-import com.sudoajay.dnswidget.vpnClasses.Command
+import com.sudoajay.stayawake.services.Command
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.main.MainActivity
 import com.sudoajay.stayawake.helper.FlashlightProvider

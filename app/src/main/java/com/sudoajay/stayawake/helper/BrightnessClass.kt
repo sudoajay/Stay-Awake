@@ -10,10 +10,9 @@ import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.main.MainActivity
 
 
-class BrightnessClass(var mainActivity: MainActivity) {
+class BrightnessClass(private var mainActivity: MainActivity) {
     //Variable to store brightness value
     var brightness = 0
-    private var Tag = "BrightnessActiivity"
 
     //Content resolver used as a handle to the system's settings
     private var cResolver: ContentResolver? = null

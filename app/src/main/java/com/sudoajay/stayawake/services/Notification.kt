@@ -9,13 +9,12 @@ import android.content.Intent
 import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.sudoajay.dnswidget.vpnClasses.Command
 import com.sudoajay.stayawake.R
 
 
 class Notification(private val context: Context) {
     var notificationManager: NotificationManager? = null
-    var notification: Notification? = null
+    private var notification: Notification? = null
 
 
 
@@ -83,7 +82,7 @@ class Notification(private val context: Context) {
         notifyNotification(notification!!)
     }
 
-     fun notifyNotification(notification: Notification) {
+     private fun notifyNotification(notification: Notification) {
         notificationManager!!.notify(StayAwakeService.NOTIFICATION_ID_STATE, notification)
 
     }

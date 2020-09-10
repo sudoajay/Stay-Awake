@@ -1,15 +1,11 @@
 package com.sudoajay.stayawake.services
 
-import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.net.ConnectivityManager
-import android.net.VpnService
+import android.content.pm.ServiceInfo
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -18,18 +14,15 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
-import com.sudoajay.dnswidget.vpnClasses.Command
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.activity.main.MainActivity
-import com.sudoajay.stayawake.helper.ConnectivityType
-import com.sudoajay.stayawake.helper.NotificationChannels
-import com.sudoajay.stayawake.helper.NotificationChannels.notificationOnCreate
+import com.sudoajay.stayawake.firebase.NotificationChannels
+import com.sudoajay.stayawake.firebase.NotificationChannels.notificationOnCreate
 
 class StayAwakeService : Service() {
 
     private var mBinder: IBinder = MyBinder()
     private var wakeLock: PowerManager.WakeLock? = null
-    private var TAG = "StayAwakeService"
     private lateinit var notificationCompat: NotificationCompat.Builder
     private var notification: Notification? = null
     var stayAwakeStatus = MutableLiveData<Boolean>()
@@ -43,7 +36,7 @@ class StayAwakeService : Service() {
         )]) {
             Command.RESUME -> {
                 stayAwakeStatus.value = true
-                Log.i(TAG, "onStartCommand  Command.RESUME -  $intent")
+
 
                 getSharedPreferences("state", Context.MODE_PRIVATE).edit()
                     .putBoolean(getString(R.string.is_stay_awake_active_text), true).apply()
@@ -54,7 +47,7 @@ class StayAwakeService : Service() {
 
             }
             Command.START -> {
-                Log.i(TAG, "onStartCommand  Command.Start -  $intent")
+
 
                 getSharedPreferences("state", Context.MODE_PRIVATE).edit()
                     .putBoolean(getString(R.string.is_stay_awake_active_text), true).apply()
@@ -63,7 +56,7 @@ class StayAwakeService : Service() {
 
             }
             Command.STOP -> {
-                Log.i(TAG, "onStartCommand  Command.Stop -  ")
+
 //
                 stopVpn()
                 stopSelf()
@@ -72,7 +65,7 @@ class StayAwakeService : Service() {
             Command.PAUSE -> {
 
                 stayAwakeStatus.value = false
-                Log.i(TAG, "onStartCommand  Command.PAUSE -  ")
+
                 getSharedPreferences("state", Context.MODE_PRIVATE).edit()
                     .putBoolean(getString(R.string.is_stay_awake_active_text), false).apply()
                 pauseService()
@@ -110,7 +103,7 @@ class StayAwakeService : Service() {
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-            startForeground(NOTIFICATION_ID_STATE, notificationCompat.build(), 1)
+            startForeground(NOTIFICATION_ID_STATE, notificationCompat.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE)
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             startForeground(NOTIFICATION_ID_STATE, notificationCompat.build())
 
@@ -119,7 +112,7 @@ class StayAwakeService : Service() {
 
 
     private fun startStayAwake() {
-        Log.e(TAG, "Start Wake Lock")
+
         wakeLock!!.acquire(100*60*1000L /*1000 minutes*/)
     }
 
@@ -184,7 +177,7 @@ class StayAwakeService : Service() {
     }
 
     private fun stopStayAwake() {
-        Log.e(TAG, "Stop Wake Lock")
+
         if (wakeLock != null && wakeLock!!.isHeld)
             wakeLock!!.release()
     }
@@ -196,7 +189,7 @@ class StayAwakeService : Service() {
 
 
     override fun onDestroy() {
-        Log.i(TAG, "Destroyed, shutting down")
+
         stopVpn()
     }
 
@@ -218,19 +211,6 @@ class StayAwakeService : Service() {
         const val REQUEST_CODE_STOP = 41
         const val NOTIFICATION_ID_STATE = 10
 
-        const val EXTRA_START_AWAKE_FLAG =
-            "vyan.alwaysonwidget.services.StayAwakeService.EXTRA_START_AWAKE_FLAG" // Boolean extra
-
-        const val ACTION_TOGGLE_STAY_AWAKE =
-            "vyan.alwaysonwidget.services.StayAwakeService.ACTION_TOGGLE_STAY_AWAKE"
-        const val ACTION_ANNOUNCE_STAY_AWAKE_STATE =
-            "vyan.alwaysonwidget.services.StayAwakeService.ACTION_ANNOUNCE_STAY_AWAKE_STATE"
-
-        const val ACTION_STAY_AWAKE_STATE_CHANGED =
-            "vyan.alwaysonwidget.services.StayAwakeService.ACTION_STAY_AWAKE_STATE_CHANGED"
-        const val EXTRA_STAY_AWAKE_STATE =
-            "vyan.alwaysonwidget.services.StayAwakeService.EXTRA_STAY_AWAKE_STATE" // Boolean extra
-
 
         fun startTheService(context: Context) {
             Log.i("BOOT", "Checking whether to start ad buster on boot")
@@ -241,7 +221,6 @@ class StayAwakeService : Service() {
                 return
             }
 
-            Log.i("BOOT", "Starting ad buster from boot")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notificationOnCreate(context)
             }

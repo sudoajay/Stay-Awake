@@ -5,7 +5,6 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -16,7 +15,6 @@ import java.util.*
 
 open class BaseActivity : AppCompatActivity() {
     private lateinit var currentTheme: String
-    private var TAG = "BaseActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currentTheme =
@@ -27,36 +25,6 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
-        Log.e(TAG, " Activity - onStart ")
-        super.onStart()
-    }
-
-
-    override fun onPause() {
-        Log.e(TAG, " Activity - onPause ")
-
-        super.onPause()
-    }
-
-
-    override fun onStop() {
-        Log.e(TAG, " Activity - onStop ")
-
-        super.onStop()
-    }
-
-    override fun onRestart() {
-        Log.e(TAG, " Activity - onRestart ")
-
-        super.onRestart()
-    }
-
-    override fun onDestroy() {
-        Log.e(TAG, " Activity - onDestroy ")
-
-        super.onDestroy()
-    }
 
     override fun onResume() {
         super.onResume()
@@ -64,7 +32,6 @@ open class BaseActivity : AppCompatActivity() {
             getDarkMode(
                 applicationContext
             )
-        Log.e(TAG, " Activity - onResume ")
 
         if (currentTheme != theme)
             recreate()

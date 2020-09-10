@@ -1,6 +1,5 @@
 package com.sudoajay.stayawake.tiles
 
-import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.graphics.drawable.Icon
@@ -105,11 +104,7 @@ class MyStayAwakeTile : TileService() {
         tile.updateTile()
     }
 
-    override fun onStopListening() {
-        super.onStopListening()
 
-        // Called when the tile is no longer visible
-    }
 
 
 }

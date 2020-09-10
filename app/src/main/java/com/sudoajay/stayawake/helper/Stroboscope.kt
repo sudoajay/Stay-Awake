@@ -5,10 +5,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class Stroboscope(var flash: FlashlightProvider, var viewModel: MainActivityViewModel) {
+class Stroboscope(var flash: FlashlightProvider, private var viewModel: MainActivityViewModel) {
 
 
-    private val SOS = arrayListOf(
+    private val sosFreq = arrayListOf(
         250L,
         250L,
         250L,
@@ -43,11 +43,11 @@ class Stroboscope(var flash: FlashlightProvider, var viewModel: MainActivityView
             try {
                 flash.turnFlashlightOn()
                 val onDuration =
-                    if (viewModel.sos.value!!) SOS[sosIndex++ % SOS.size] else stroboFrequency
+                    if (viewModel.sos.value!!) sosFreq[sosIndex++ % sosFreq.size] else stroboFrequency
                 delay(onDuration)
                 flash.turnFlashlightOff()
                 val offDuration =
-                    if (viewModel.sos.value!!) SOS[sosIndex++ % SOS.size] else stroboFrequency
+                    if (viewModel.sos.value!!) sosFreq[sosIndex++ % sosFreq.size] else stroboFrequency
                 delay(offDuration)
             } catch (e: Exception) {
                 viewModel.sos.postValue(false)

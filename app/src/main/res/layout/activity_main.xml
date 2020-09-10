@@ -67,7 +67,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_flashlight" />
+                app:srcCompat="@drawable/ic_flashlight"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/sos_TextView"
@@ -96,7 +97,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sos_TextView"
                 app:srcCompat="@drawable/ic_display"
-                />
+                tools:ignore="ContentDescription" />
 
             <SeekBar
                 android:id="@+id/display_SeekBar"
