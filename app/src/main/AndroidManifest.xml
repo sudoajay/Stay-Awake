@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.sudoajay.stayawake">
 
+    <permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+        </intent>
+    </queries>
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission
@@ -17,12 +24,19 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:hardwareAccelerated="true"
+        android:name=".ui.MainApplication"
+        android:requestLegacyExternalStorage="true"
+        android:fullBackupContent="@xml/backup_rules"
+
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/SettingAppTheme"
+        >
         <activity
-            android:name=".activity.splashScreen.Splash"
-            android:theme="@style/splashTheme">
+            android:name=".ui.splashScreen.Splash"
+            android:theme="@style/splashTheme"
+            android:exported="true">
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,25 +46,25 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
-        <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.main.MainActivity"
+        <activity android:name=".ui.BaseActivity" />
+        <activity android:name=".ui.mainActivity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".activity.settingActivity.SettingsActivity"
+            android:name=".ui.setting.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:launchMode="singleInstance"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/SettingAppTheme" />
 
         <activity
-            android:name=".activity.sendFeedback.SendFeedback"
+            android:name=".ui.feedbackAndHelp.SendFeedbackAndHelp"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.transparent.TransparentClass"
+            android:name=".ui.transparent.TransparentClass"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
 
         <!--        Firebase config-->
         <service
-            android:name=".firebase.MyFirebaseMessagingService"
+            android:name=".ui.firebase.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -80,7 +94,8 @@
             android:name=".tiles.MyStayAwakeTile"
             android:icon="@drawable/ic_stay_awake_on"
             android:label="@string/app_name"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -90,7 +105,8 @@
             android:name=".tiles.MyFlashlightTile"
             android:icon="@drawable/ic_flashlight"
             android:label="@string/shortcut_flash_text"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>

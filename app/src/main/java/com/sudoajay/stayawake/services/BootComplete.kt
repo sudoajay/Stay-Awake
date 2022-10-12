@@ -6,14 +6,14 @@ import android.content.Intent
 import android.content.Intent.*
 import android.content.IntentFilter
 import com.sudoajay.stayawake.R
-import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity.SettingsFragment.Companion.getIsStartOnBoot
-import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity.SettingsFragment.Companion.getIsStartOnCarDock
-import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity.SettingsFragment.Companion.getIsStartOnCharging
-import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity.SettingsFragment.Companion.getIsStartOnDeskDock
-import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity.SettingsFragment.Companion.getIsStartOnMobile
-import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity.SettingsFragment.Companion.getIsStartOnUsb
-import com.sudoajay.stayawake.activity.settingActivity.SettingsActivity.SettingsFragment.Companion.getIsStartOnWifi
-import com.sudoajay.stayawake.helper.ConnectivityType
+import com.sudoajay.stayawake.ui.setting.SettingsActivity.SettingsFragment.Companion.getIsStartOnBoot
+import com.sudoajay.stayawake.ui.setting.SettingsActivity.SettingsFragment.Companion.getIsStartOnCarDock
+import com.sudoajay.stayawake.ui.setting.SettingsActivity.SettingsFragment.Companion.getIsStartOnCharging
+import com.sudoajay.stayawake.ui.setting.SettingsActivity.SettingsFragment.Companion.getIsStartOnDeskDock
+import com.sudoajay.stayawake.ui.setting.SettingsActivity.SettingsFragment.Companion.getIsStartOnMobile
+import com.sudoajay.stayawake.ui.setting.SettingsActivity.SettingsFragment.Companion.getIsStartOnUsb
+import com.sudoajay.stayawake.ui.setting.SettingsActivity.SettingsFragment.Companion.getIsStartOnWifi
+import com.sudoajay.stayawake.utill.ConnectivityType
 
 
 class BootComplete : BroadcastReceiver() {

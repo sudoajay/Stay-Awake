@@ -10,7 +10,7 @@
         <intent
             android:action="settingShortcut"
             android:targetPackage="com.sudoajay.stayawake"
-            android:targetClass="com.sudoajay.stayawake.activity.main.MainActivity" />
+            android:targetClass="com.sudoajay.stayawake.ui.mainActivity.MainActivity" />
     </shortcut>
 
     <shortcut
@@ -23,7 +23,7 @@
         <intent
             android:action="startFlashShortcut"
             android:targetPackage="com.sudoajay.stayawake"
-            android:targetClass="com.sudoajay.stayawake.activity.transparent.TransparentClass" />
+            android:targetClass="com.sudoajay.stayawake.ui.transparent.TransparentClass" />
     </shortcut>
     <shortcut
         android:shortcutId="startStayAwakeShortcut"
@@ -35,6 +35,6 @@
         <intent
             android:action="startStayAwakeShortcut"
             android:targetPackage="com.sudoajay.stayawake"
-            android:targetClass="com.sudoajay.stayawake.activity.transparent.TransparentClass" />
+            android:targetClass="com.sudoajay.stayawake.ui.transparent.TransparentClass" />
     </shortcut>
 </shortcuts>

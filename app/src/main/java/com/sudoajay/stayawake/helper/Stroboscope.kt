@@ -1,6 +1,6 @@
 package com.sudoajay.stayawake.helper
 
-import com.sudoajay.stayawake.activity.main.MainActivityViewModel
+import com.sudoajay.stayawake.ui.mainActivity.MainActivityViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

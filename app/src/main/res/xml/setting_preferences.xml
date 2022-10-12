@@ -52,12 +52,9 @@
             app:key="useDarkTheme"
             app:title="@string/use_dark_mode_text" />
 
-        <ListPreference
-            android:defaultValue="en"
-            android:entries="@array/languageList"
-            android:entryValues="@array/languagesValues"
-            android:key="changeLanguage"
-            android:title="@string/change_language_text" />
+        <Preference
+            app:key="changeLanguage"
+            app:title="@string/change_language_text" />
 
 
 

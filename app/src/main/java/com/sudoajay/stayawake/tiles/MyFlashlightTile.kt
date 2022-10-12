@@ -9,9 +9,9 @@ import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
 
 import com.sudoajay.stayawake.R
-import com.sudoajay.stayawake.activity.main.MainActivity
-import com.sudoajay.stayawake.activity.transparent.TransparentClass
-import com.sudoajay.stayawake.helper.CustomToast
+import com.sudoajay.stayawake.ui.mainActivity.MainActivity
+import com.sudoajay.stayawake.ui.transparent.TransparentClass
+import com.sudoajay.stayawake.utill.Toaster
 
 
 @RequiresApi(Build.VERSION_CODES.N)
@@ -57,7 +57,7 @@ class MyFlashlightTile: TileService(){
     override fun onTileAdded() {
         super.onTileAdded()
 
-        CustomToast.toastIt(
+        Toaster.showToast(
             applicationContext,
             getString(R.string.shortcut_flash_text) +" "+ getString(R.string.added_text)
         )
@@ -68,7 +68,7 @@ class MyFlashlightTile: TileService(){
     override fun onTileRemoved() {
         super.onTileRemoved()
 
-        CustomToast.toastIt(
+        Toaster.showToast(
             applicationContext,
             getString(R.string.shortcut_flash_text)+" " + getString(R.string.removed_text)
         )

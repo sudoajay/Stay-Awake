@@ -8,23 +8,23 @@
 
         <variable
             name="viewmodel"
-            type="com.sudoajay.stayawake.activity.main.MainActivityViewModel" />
+            type="com.sudoajay.stayawake.ui.mainActivity.MainActivityViewModel" />
         <variable
             name="mainActivity"
-            type="com.sudoajay.stayawake.activity.main.MainActivity" />
+            type="com.sudoajay.stayawake.ui.mainActivity.MainActivity" />
     </data>
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:background="?attr/mainBgColor"
+        android:background="@color/mainBgColor"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/bgBoxColor"
+            android:background="@color/bgBoxColor"
             app:elevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_text"
-                    android:textColor="?attr/headingNormalTextColor"
+                    android:textColor="@color/headingNormalTextColor"
                     android:textSize="@dimen/toolbar_title_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:max="255"
-                android:visibility="@{viewmodel.getDisplayController ? View.VISIBLE :View.GONE}"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/displayController_ImageView" />
@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_stay_awake_off"
             android:onClick="@{() ->mainActivity.onClickStayAwake()}"
-            app:backgroundTint="?attr/bgBoxColor"
+            app:backgroundTint="@color/bgBoxColor"
             app:fabSize="normal"
             app:layout_anchor="@id/bottomAppBar" />
         <com.google.android.material.bottomappbar.BottomAppBar
@@ -127,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:backgroundTint="?attr/bgBoxColor"
+            app:backgroundTint="@color/bgBoxColor"
             app:menu="@menu/main_menu"
             app:navigationIcon="@drawable/ic_navigation_drawer" />
 

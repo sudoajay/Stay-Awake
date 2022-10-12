@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--    App Theme Color-->
-    <color name="colorPrimaryDark">#121212</color>
-    <color name="colorPrimary">#272727</color>
-    <color name="colorAccent">#74A0EE</color>
+    <color name="colorPrimaryDark">#101010</color>
+    <color name="colorPrimary">#101010</color>
+    <color name="colorAccent">#5271ff</color>
+    <color name="appTheme">#5271ff</color>
 
-
-    <!--    Modify  App Theme Color -->
-    <color name="primaryAppColor">#74A0EE</color>
-    <color name="mainBgColor">#121212</color>
+    <!--    Activity-->
+    <color name="statusBarColor">#101010</color>
+    <color name="mainBgColor">#171717</color>
+    <color name="bgBoxColor">#101010</color>
     <color name="headingNormalTextColor">#dae1e7</color>
-    <color name="fadeTextColor">#dae1e7</color>
-    <color name="bgBoxColor">#272727</color>
-    <color name="bottomItemTintColor">#74A0EE</color>
+    <color name="whiteColor">#fff</color>
+    <color name="fadeTextColor">#C4CBD0</color>
+    <color name="primaryAppColor">#74A0EE</color>
     <color name="mainItemColor">#dae1e7</color>
+    <color name="navigationIcon">#74A0EE</color>
+
+    <!--    home activity-->
+    <color name="bottomNavigation_SelectedColor">#dae1e7</color>
+
+    <!--    Send Feedback // Reminder -->
     <color name="boxTextColor">#dae1e7</color>
-    <color name="boxHoverColor">#dae1e7</color>
+    <color name="boxHoverColor">#7DC4EC</color>
     <color name="errorBoxColor">#CF6679</color>
     <color name="feedbackBoxBgColor">#272727</color>
-    <color name="dialogBgColorInfo">#272727</color>
+    <color name="dialogBgColorInfo">#2546ABEB</color>
+    <color name="systemInfoBgColor">#171717</color>
 
 
     <!--    Divider color-->

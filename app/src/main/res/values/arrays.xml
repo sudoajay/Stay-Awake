@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="languageList">
+    <string-array name="languageNonChangeList">
         <item name="english">English</item>
         <item name="hindi">हिन्दी</item>
-        <item name="arabic">عربى</item>
         <item name="bengali">বাঙালি</item>
         <item name="german">deutsch</item>
         <item name="spanish">español</item>
@@ -21,22 +20,44 @@
         <item name="telugu">తెలుగు</item>
         <item name="thai">ไทย</item>
         <item name="turkish">Türk</item>
-        <item name="urdu">اردو</item>
         <item name="vietnamese">Tiếng Việt</item>
         <item name="chinese">中文</item>
 
     </string-array>
 
-    <string-array name="languagesValues">
+    <string-array name="languagesList">
+        <item name="english">@string/english_text</item>
+        <item name="hindi">@string/hindi_text</item>
+        <item name="bengali">@string/bengali_text</item>
+        <item name="german">@string/german_text</item>
+        <item name="spanish">@string/spanish_text</item>
+        <item name="french">@string/french_text</item>
+        <item name="portuguese">@string/portuguese_text</item>
+        <item name="indonesian">@string/indonesian_text</item>
+        <item name="italian">@string/italian_text</item>
+        <item name="japanese">@string/japanese_text</item>
+        <item name="korean">@string/korean_text</item>
+        <item name="nepali">@string/nepali_text</item>
+        <item name="dutch">@string/dutch_text</item>
+        <item name="punjabi">@string/punjabi_text</item>
+        <item name="russian">@string/russian_text</item>
+        <item name="tamil">@string/tamil_text</item>
+        <item name="telugu">@string/telugu_text</item>
+        <item name="thai">@string/thai_text</item>
+        <item name="turkish">@string/turkish_text</item>
+        <item name="vietnamese">@string/vietnamese_text</item>
+        <item name="chinese">@string/chinese_text</item>
+    </string-array>
+
+    <string-array name="languageValues">
         <item name="english">en</item>
         <item name="hindi">hi</item>
-        <item name="arabic">ar</item>
         <item name="bengali">bn</item>
         <item name="german">de</item>
         <item name="spanish">es</item>
         <item name="french">fr</item>
         <item name="portuguese">pt</item>
-        <item name="indonesian">id</item>
+        <item name="indonesian">in</item>
         <item name="italian">it</item>
         <item name="japanese">ja</item>
         <item name="korean">ko</item>
@@ -48,11 +69,9 @@
         <item name="telugu">te</item>
         <item name="thai">th</item>
         <item name="turkish">tr</item>
-        <item name="urdu">ur</item>
         <item name="vietnamese">vi</item>
         <item name="chinese">zh</item>
     </string-array>
-
 
 
 </resources>

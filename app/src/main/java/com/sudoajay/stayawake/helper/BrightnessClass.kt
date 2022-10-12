@@ -7,7 +7,8 @@ import android.os.Build
 import android.provider.Settings
 import android.view.Window
 import com.sudoajay.stayawake.R
-import com.sudoajay.stayawake.activity.main.MainActivity
+import com.sudoajay.stayawake.ui.mainActivity.MainActivity
+import com.sudoajay.stayawake.utill.Toaster
 
 
 class BrightnessClass(private var mainActivity: MainActivity) {
@@ -42,7 +43,7 @@ class BrightnessClass(private var mainActivity: MainActivity) {
             //Get the current system brightness
             brightness = Settings.System.getInt(cResolver, Settings.System.SCREEN_BRIGHTNESS)
         } catch (e: Exception) {
-            CustomToast.toastIt(
+            Toaster.showToast(
                 mainActivity.applicationContext,
                 mainActivity.getString(R.string.reportIt)
             )
@@ -70,7 +71,7 @@ class BrightnessClass(private var mainActivity: MainActivity) {
             retVal = Settings.System.canWrite(mainActivity.applicationContext)
             if (!retVal) {
                 mainActivity.viewModel.displayController.value = false
-                CustomToast.toastIt(
+                Toaster.showToast(
                     mainActivity.applicationContext,
                     mainActivity.getString(R.string.giveUsPermission)
                 )

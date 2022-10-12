@@ -15,9 +15,9 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.sudoajay.stayawake.R
-import com.sudoajay.stayawake.activity.main.MainActivity
-import com.sudoajay.stayawake.firebase.NotificationChannels
-import com.sudoajay.stayawake.firebase.NotificationChannels.notificationOnCreate
+import com.sudoajay.stayawake.ui.mainActivity.MainActivity
+import com.sudoajay.stayawake.ui.firebase.NotificationChannels
+import com.sudoajay.stayawake.ui.firebase.NotificationChannels.notificationOnCreate
 
 class StayAwakeService : Service() {
 

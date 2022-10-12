@@ -1,2 +1,20 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
+        mavenCentral()
+    }
+}
+
 include ':app'
 rootProject.name = "Stay Awake"
+

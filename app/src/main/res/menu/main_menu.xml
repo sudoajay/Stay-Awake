@@ -5,7 +5,7 @@
         android:id="@+id/darkMode_optionMenu"
         android:icon="@drawable/ic_dark_mode"
         android:title="@string/darkMode_optionMenu"
-        app:iconTint="?attr/bottomItemTintColor"
+        app:iconTint="@color/bottomNavigation_SelectedColor"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item

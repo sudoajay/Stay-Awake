@@ -66,7 +66,7 @@ class Notification(private val context: Context) {
             .setPriority(NotificationCompat.PRIORITY_MIN)
             .setSound(uri) // Provide a large icon, shown with the notification in the
 
-            .color = ContextCompat.getColor(context, R.color.primaryAppColor)
+            .color = ContextCompat.getColor(context, R.color.appTheme)
         // If this notification relates to a past or upcoming event, you
 
         //Content hen expanded
