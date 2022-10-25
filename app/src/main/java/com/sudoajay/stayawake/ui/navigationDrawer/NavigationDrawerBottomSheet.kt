@@ -1,4 +1,4 @@
-package com.sudoajay.stayawake.ui.mainActivity
+package com.sudoajay.stayawake.ui.navigationDrawer
 
 import android.content.Intent
 import android.net.Uri

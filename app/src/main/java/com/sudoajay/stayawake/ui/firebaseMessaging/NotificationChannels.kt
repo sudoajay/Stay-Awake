@@ -1,4 +1,4 @@
-package com.sudoajay.stayawake.ui.firebase
+package com.sudoajay.stayawake.ui.firebaseMessaging
 
 import android.app.NotificationChannel
 import android.app.NotificationChannelGroup

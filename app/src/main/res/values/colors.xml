@@ -2,11 +2,11 @@
 <resources>
     <color name="colorPrimaryDark">#f2f2f2</color>
     <color name="colorPrimary">#f2f2f2</color>
-    <color name="colorAccent">#5271ff</color>
-    <color name="appTheme">#5271ff</color>
-    <color name="appThemeDark">#5271ff</color>
+    <color name="colorAccent">#376db6</color>
+    <color name="appTheme">#376db6</color>
+    <color name="appThemeDark">#376db6</color>
 
-    <color name="statusBarColor">#fcfcfc</color>
+    <color name="statusBarColor">#376db6</color>
     <color name="mainBgColor">#f2f2f2</color>
     <color name="bgBoxColor">#fcfcfc</color>
     <color name="headingNormalTextColor">#353131</color>

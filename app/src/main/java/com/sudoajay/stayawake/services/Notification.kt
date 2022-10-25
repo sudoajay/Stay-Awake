@@ -10,6 +10,7 @@ import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.sudoajay.stayawake.R
+import com.sudoajay.stayawake.model.Command
 
 
 class Notification(private val context: Context) {

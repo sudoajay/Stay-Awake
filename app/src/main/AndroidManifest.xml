@@ -20,22 +20,20 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:hardwareAccelerated="true"
         android:name=".ui.MainApplication"
-        android:requestLegacyExternalStorage="true"
-        android:fullBackupContent="@xml/backup_rules"
-
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/SettingAppTheme"
-        >
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".ui.splashScreen.Splash"
-            android:theme="@style/splashTheme"
+            android:name=".ui.mainActivity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,25 +44,32 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
-        <activity android:name=".ui.BaseActivity" />
-        <activity android:name=".ui.mainActivity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.BaseActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui.splashScreen.Splash"
+            android:theme="@style/splashTheme"
+            android:exported="false"/>
         <activity
             android:name=".ui.setting.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:launchMode="singleInstance"
-            android:theme="@style/SettingAppTheme" />
+            android:theme="@style/SettingAppTheme"
+            android:exported="false"/>
 
         <activity
             android:name=".ui.feedbackAndHelp.SendFeedbackAndHelp"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false"/>
         <activity
             android:name=".ui.transparent.TransparentClass"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="false"/>
 
         <!--        Firebase config-->
         <service
-            android:name=".ui.firebase.MyFirebaseMessagingService"
+            android:name=".ui.firebaseMessaging.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -72,20 +77,47 @@
         </service>
 
         <service android:name=".services.StayAwakeService"
-            android:enabled="true"/>
+            android:enabled="true"
+            android:exported="false"/>
 
         <receiver
-            android:name=".services.BootComplete"
+            android:name=".services.BroadCastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-                <action android:name="android.intent.action.UMS_CONNECTED" />
-                <action android:name="android.intent.action.UMS_DISCONNECTED" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
-                    tools:ignore="BatteryLife" />
+                <action android:name="android.bluetooth.device.action.ACL_CONNECTED"/>
+                <action android:name="android.bluetooth.device.action.ACL_DISCONNECT_REQUESTED "/>
+                <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED"/>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"/>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_DETACHED"/>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.os.action.POWER_SAVE_MODE_CHANGED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.REBOOT"/>
+                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+                <action android:name="android.app.action.INTERRUPTION_FILTER_CHANGED"/>
+                <action android:name="android.nfc.action.ADAPTER_STATE_CHANGED"/>
+                <action android:name="android.intent.action.HEADSET_PLUG"/>
+
+
+
+
+
+
+                <!--                <action android:name="android.intent.action.AIRPLANE_MODE"/>-->
+<!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"-->
+<!--                    tools:ignore="BatteryLife" />-->
+                <!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+<!--                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />-->
+<!--                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />-->
+<!--                <action android:name="android.intent.action.UMS_CONNECTED" />-->
+<!--                <action android:name="android.intent.action.UMS_DISCONNECTED" />-->
+<!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"-->
+<!--                    tools:ignore="BatteryLife" />-->
             </intent-filter>
         </receiver>
 

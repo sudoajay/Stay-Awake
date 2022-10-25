@@ -1,9 +1,9 @@
 package com.sudoajay.stayawake.helper
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleCoroutineScope
 import com.sudoajay.stayawake.ui.mainActivity.MainActivityViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class Stroboscope(var flash: FlashlightProvider, private var viewModel: MainActivityViewModel) {
 
@@ -31,7 +31,7 @@ class Stroboscope(var flash: FlashlightProvider, private var viewModel: MainActi
     private var stroboFrequency = 1000L
 
 
-    fun startCoroutineTimer() = GlobalScope.launch {
+    fun startCoroutineTimer() = CoroutineScope(Dispatchers.IO).launch {
         while (true) {
             runStroboscope()
         }

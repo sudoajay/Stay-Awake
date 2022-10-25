@@ -1,48 +1,54 @@
 package com.sudoajay.stayawake.ui.mainActivity
 
 import android.Manifest
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
-import android.content.ServiceConnection
+import android.bluetooth.BluetoothDevice
+import android.content.*
 import android.content.pm.PackageManager
+import android.hardware.usb.UsbManager
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import android.os.PowerManager
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.SeekBar
-import android.widget.SeekBar.OnSeekBarChangeListener
-import android.window.OnBackInvokedDispatcher
-import androidx.activity.OnBackPressedCallback
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.databinding.ActivityMainBinding
 import com.sudoajay.stayawake.helper.BrightnessClass
-import com.sudoajay.stayawake.services.Command
+import com.sudoajay.stayawake.model.Command
+import com.sudoajay.stayawake.services.BroadCastReceiver
 import com.sudoajay.stayawake.services.StayAwakeService
 import com.sudoajay.stayawake.ui.BaseActivity
 import com.sudoajay.stayawake.ui.darkMode.DarkModeBottomSheet
+import com.sudoajay.stayawake.ui.navigationDrawer.NavigationDrawerBottomSheet
 import com.sudoajay.stayawake.ui.setting.SettingsActivity
 import com.sudoajay.stayawake.utill.HelperClass.Companion.isDarkMode
 import com.sudoajay.stayawake.utill.Toaster
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
     private var isDarkTheme: Boolean = false
     lateinit var viewModel: MainActivityViewModel
+
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+
 
     private lateinit var brightnessClass: BrightnessClass
-    private var doubleBackToExitPressedOnce = false
+
+    private lateinit var broadCastReceiver: BroadCastReceiver
+    private lateinit var intentFilter:IntentFilter
 
     // Boolean to check if our activity is bound to service or not
     var mIsBound: Boolean = false
@@ -62,7 +68,7 @@ class MainActivity : BaseActivity() {
         setContentView(view)
 
 
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         binding.viewmodel = viewModel
         binding.mainActivity = this
         binding.lifecycleOwner = this
@@ -70,23 +76,37 @@ class MainActivity : BaseActivity() {
         if (!intent.action.isNullOrEmpty() && intent.action == settingId)
             openMoreSetting()
 
+        setBroadCastReceiver()
+        initNavigation()
+        setupBottomNavView()
 
 
-        if (Build.VERSION.SDK_INT >= 33) {
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(
-                OnBackInvokedDispatcher.PRIORITY_DEFAULT
-            ) {
-                onBack()
-            }
+
+
+    }
+
+    private fun setBroadCastReceiver(){
+        broadCastReceiver = BroadCastReceiver()
+        intentFilter = IntentFilter()
+        intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
+        intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED)
+        intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
+        intentFilter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED)
+        intentFilter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED)
+        intentFilter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED)
+        intentFilter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED)
+        intentFilter.addAction(Intent.ACTION_BATTERY_LOW)
+        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
+        intentFilter.addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED)
+
+        val listenToBroadcastsFromOtherApps = false
+        val receiverFlags = if (listenToBroadcastsFromOtherApps) {
+            ContextCompat.RECEIVER_EXPORTED
         } else {
-            onBackPressedDispatcher.addCallback(
-                this,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        onBack()
-                    }
-                })
+            ContextCompat.RECEIVER_NOT_EXPORTED
         }
+        ContextCompat.registerReceiver(applicationContext, broadCastReceiver, intentFilter, receiverFlags)
 
     }
 
@@ -96,20 +116,20 @@ class MainActivity : BaseActivity() {
 
         setItemColor()
 
-        binding.displaySeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-
-            }
-
-            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                brightnessClass.updateBrightness(progress)
-
-            }
-        })
+//        binding.displaySeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+//            override fun onStopTrackingTouch(seekBar: SeekBar) {
+//
+//            }
+//
+//            override fun onStartTrackingTouch(seekBar: SeekBar) {
+//
+//            }
+//
+//            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+//                brightnessClass.updateBrightness(progress)
+//
+//            }
+//        })
 
         viewModel.flashLight.value = isFlashActive(applicationContext)
 
@@ -118,75 +138,83 @@ class MainActivity : BaseActivity() {
         super.onResume()
     }
 
+    private fun initNavigation() {
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
+        navController = navHostFragment!!.navController
+
+        binding.lottieAnimationView.setAnimation(if (isDarkTheme) R.raw.stay_awake_off_night else R.raw.stay_awake_off)
+
+    }
+
+    private fun setupBottomNavView() {
+        NavigationUI.setupWithNavController(binding.bottomAppBar, navController)
+        binding.bottomAppBar.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _: Bundle? ->
+            when (destination.id) {
+                R.id.homeFragment -> {
+                    hideOrShowBottomNavigation(View.VISIBLE)
+                }
+                R.id.selectLanguageFragment->{
+                    hideOrShowBottomNavigation(View.GONE)
+                }
+                else -> {
+                }
+            }
+        }
+    }
+
+    private fun hideOrShowBottomNavigation(visibility: Int) {
+        binding.bottomAppBar.visibility = visibility
+        binding.lottieAnimationView.visibility = visibility
+    }
+
+
     private fun setItemColor() {
 
-        viewModel.flashLight.observe(this) {
-            if (it) {
-                binding.flashlightImageView.setColorFilter(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.primaryAppColor
+//        viewModel.flashLight.observe(this) {
+//
+//                binding.flashlightImageView.setColorFilter(
+//                    ContextCompat.getColor(
+//                        applicationContext,
+//                        if (it)  R.color.primaryAppColor else   R.color.mainItemColor
+//
+//                    )
+//                )
+//
+//
+//        }
 
-                    )
-                )
-            } else {
-                binding.flashlightImageView.setColorFilter(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.primaryAppColor
-                    )
-                )
-            }
-
-        }
-
-        viewModel.sos.observe(this) {
-
-            if (it) {
-                binding.sosTextView.setTextColor(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.primaryAppColor
-
-                    )
-                )
-            } else {
-                binding.sosTextView.setTextColor(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.mainItemColor
-                    )
-                )
-            }
-
-        }
-
-        viewModel.displayController.observe(this) {
-            if (it) {
-                binding.displayControllerImageView.setColorFilter(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.primaryAppColor
-
-                    )
-                )
-
-
-
-                if (brightnessClass.checkSystemWritePermission()) {
-                    brightnessClass.callBeforeEverything()
-                    binding.displaySeekBar.progress = brightnessClass.brightness
-                }
-            } else {
-                binding.displayControllerImageView.setColorFilter(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.mainItemColor
-                    )
-                )
-            }
-
-        }
+//        viewModel.sos.observe(this) {
+//
+//                binding.sosTextView.setTextColor(
+//                    ContextCompat.getColor(
+//                        applicationContext,
+//                        if (it)   R.color.primaryAppColor else  R.color.mainItemColor
+//
+//                    )
+//                )
+//
+//
+//        }
+//
+//        viewModel.displayController.observe(this) {
+//
+//                binding.displayControllerImageView.setColorFilter(
+//                    ContextCompat.getColor(
+//                        applicationContext,
+//                        if (it)   R.color.primaryAppColor else    R.color.mainItemColor
+//
+//                    )
+//                )
+//                if ( it &&  brightnessClass.checkSystemWritePermission()) {
+//                    brightnessClass.callBeforeEverything()
+//                    binding.displaySeekBar.progress = brightnessClass.brightness
+//
+//                }
+//        }
 
 
         //         Setup BottomAppBar Navigation Setup
@@ -209,8 +237,9 @@ class MainActivity : BaseActivity() {
 
 
     fun onClickStayAwake() {
-        val newIt = binding.stayAwakeFloatingActionButton.drawable.constantState ==
-                ContextCompat.getDrawable(this, R.drawable.ic_stay_awake_on)!!.constantState
+//        val newIt = binding.stayAwakeFloatingActionButton.drawable.constantState ==
+//                ContextCompat.getDrawable(this, R.drawable.ic_stay_awake_on)!!.constantState
+        val newIt = false
 
         if (!checkAndRequestWakeLockPermission()) {
             callStayAwakeFun(false)
@@ -235,7 +264,7 @@ class MainActivity : BaseActivity() {
                     Intent(android.provider.Settings.ACTION_DISPLAY_SETTINGS),
                     OPEN_DISPLAY_SETTING
                 )
-            R.id.darkMode_optionMenu -> showDarkMode()
+            R.id.setting_optionMenu -> showDarkMode()
 
             R.id.default_setting_optionMenu -> {
                 viewModel.defaultSetting()
@@ -370,29 +399,20 @@ class MainActivity : BaseActivity() {
     }
 
     private fun callStayAwakeFun(newIt: Boolean) {
-        binding.stayAwakeFloatingActionButton.setImageResource(if (newIt) R.drawable.ic_stay_awake_on else R.drawable.ic_stay_awake_off)
-        if (newIt) {
+//        binding.stayAwakeFloatingActionButton.setImageResource(if (newIt) R.drawable.ic_stay_awake_on else R.drawable.ic_stay_awake_off)
             binding.stayAwakeFloatingActionButton.setColorFilter(
                 ContextCompat.getColor(
                     applicationContext,
-                    R.color.primaryAppColor
+                    if (newIt)  R.color.primaryAppColor else R.color.mainItemColor
 
                 )
             )
-        } else {
-            binding.stayAwakeFloatingActionButton.setColorFilter(
-                ContextCompat.getColor(
-                    applicationContext,
-                    R.color.mainItemColor
-                )
-            )
-        }
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
-
+        unregisterReceiver(broadCastReceiver)
         if (mIsBound) {
             applicationContext.unbindService(serviceConnection)
             mIsBound = false
@@ -400,25 +420,7 @@ class MainActivity : BaseActivity() {
     }
 
 
-    private fun onBack() {
-        if (doubleBackToExitPressedOnce) {
-            closeApp()
-            return
-        }
-        doubleBackToExitPressedOnce = true
-        Toaster.showToast(applicationContext, "Click Back Again To Exit")
-        CoroutineScope(Dispatchers.IO).launch {
-            delay(2000L)
-            doubleBackToExitPressedOnce = false
-        }
-    }
 
-    private fun closeApp() {
-        val homeIntent = Intent(Intent.ACTION_MAIN)
-        homeIntent.addCategory(Intent.CATEGORY_HOME)
-        homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        startActivity(homeIntent)
-    }
 
 
     companion object {

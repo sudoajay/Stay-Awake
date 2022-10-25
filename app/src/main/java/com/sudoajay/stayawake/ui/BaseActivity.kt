@@ -9,12 +9,11 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.WindowInsetsControllerCompat
+import com.sudoajay.stayawake.ui.firebaseMessaging.NotificationChannels
 import com.sudoajay.stayawake.R
-import com.sudoajay.stayawake.ui.firebase.NotificationChannels
 import com.sudoajay.stayawake.utill.HelperClass
 import com.sudoajay.stayawake.utill.HelperClass.Companion.getDarkMode
 import com.sudoajay.stayawake.utill.HelperClass.Companion.setIsDarkModeValue
@@ -24,7 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-
 open class BaseActivity : AppCompatActivity() {
     private lateinit var currentTheme: String
     override fun onCreate(savedInstanceState: Bundle?) {

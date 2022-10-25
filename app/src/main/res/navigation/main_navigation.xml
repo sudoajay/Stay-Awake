@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_signup"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sudoajay.stayawake.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_firebasePushNotificationFragment"
+            app:destination="@id/firebasePushNotificationFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right"/>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/firebasePushNotificationFragment"
+        android:name="com.sudoajay.stayawake.ui.firebaseMessaging.FirebasePushNotificationFragment"
+        android:label="FirebasePushNotificationFragment"
+        tools:layout="@layout/fragment_push_notification">
+        <action
+            android:id="@+id/action_firebasePushNotificationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectLanguageFragment"
+        android:name="com.sudoajay.stayawake.ui.language.SelectLanguageFragment"
+        android:label="SelectLanguageFragment"
+        tools:layout="@layout/fragment_select_language"/>
+
+
+</navigation>

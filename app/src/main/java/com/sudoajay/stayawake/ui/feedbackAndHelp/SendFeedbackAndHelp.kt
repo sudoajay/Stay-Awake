@@ -52,9 +52,18 @@ class SendFeedbackAndHelp : BaseActivity() {
 
         }
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_send_feedback)
+        changeStatusBarColor(
+            ContextCompat.getColor(
+                applicationContext,
+                R.color.bgBoxColor
+            ), !isDarkTheme
+        )
+
+        binding = ActivitySendFeedbackBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         binding.activity = this
-        changeStatusBarColor()
         setUpView()
         reference()
 
@@ -189,18 +198,6 @@ class SendFeedbackAndHelp : BaseActivity() {
         systemInfoDialog.show(ft, "dialog")
     }
 
-    /**
-     * Making notification bar transparent
-     */
-    private fun changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!isDarkTheme) {
-                val window = window
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                window.statusBarColor = Color.TRANSPARENT
-            }
-        }
-    }
 
 
 }

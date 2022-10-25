@@ -9,7 +9,7 @@
 
         <variable
             name="navigation"
-            type="com.sudoajay.stayawake.ui.mainActivity.NavigationDrawerBottomSheet" />
+            type="com.sudoajay.stayawake.ui.navigationDrawer.NavigationDrawerBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

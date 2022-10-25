@@ -141,6 +141,10 @@ dependencies {
     implementation("com.google.android.play:review:2.0.0")
     implementation("com.google.android.play:review-ktx:2.0.0")
 
+    //    External
+    implementation 'com.airbnb.android:lottie:5.2.0'
+
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

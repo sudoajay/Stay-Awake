@@ -1,4 +1,4 @@
-package com.sudoajay.stayawake.ui.firebase
+package com.sudoajay.stayawake.ui.firebaseMessaging
 
 import android.app.Notification
 import android.app.NotificationManager
@@ -28,7 +28,7 @@ class FirebaseNotification(var context: Context) {
 
         val title = remoteMessage!!.title
         val notificationText = remoteMessage.body
-        val imageUrl: String? = remoteMessage.imageUrl.toString()
+        val imageUrl: String = remoteMessage.imageUrl.toString()
 
         // now check for null notification manger
         if (notificationManager == null) {
@@ -49,7 +49,7 @@ class FirebaseNotification(var context: Context) {
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setSound(uri) // Provide a large icon, shown with the notification in the
 
-            .color = ContextCompat.getColor(context, R.color.colorPrimary)
+            .color = ContextCompat.getColor(context, R.color.colorAccent)
         // If this notification relates to a past or upcoming event, you
         Log.e("MainActivityClass", imageUrl.toString())
         if (imageUrl != "null") {

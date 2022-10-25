@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION")
 
 package com.sudoajay.stayawake.helper
 
@@ -8,7 +7,7 @@ import android.hardware.camera2.CameraManager
 import android.os.Build
 import com.sudoajay.stayawake.R
 
-class FlashlightProvider(private val context: Context) {
+class FlashlightProvider (private val context: Context) {
     private var mCamera: Camera? = null
     private var parameters: Camera.Parameters? = null
     private var camManager: CameraManager? = null

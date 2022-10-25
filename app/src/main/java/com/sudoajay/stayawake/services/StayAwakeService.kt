@@ -14,10 +14,12 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
+import com.sudoajay.stayawake.ui.firebaseMessaging.NotificationChannels
+import com.sudoajay.stayawake.ui.firebaseMessaging.NotificationChannels.notificationOnCreate
 import com.sudoajay.stayawake.R
+import com.sudoajay.stayawake.model.Command
 import com.sudoajay.stayawake.ui.mainActivity.MainActivity
-import com.sudoajay.stayawake.ui.firebase.NotificationChannels
-import com.sudoajay.stayawake.ui.firebase.NotificationChannels.notificationOnCreate
+
 
 class StayAwakeService : Service() {
 
@@ -59,7 +61,6 @@ class StayAwakeService : Service() {
 
 //
                 stopVpn()
-                stopSelf()
 
             }
             Command.PAUSE -> {
@@ -164,7 +165,7 @@ class StayAwakeService : Service() {
 
     private fun stopVpn() {
 
-        stopForeground(true)
+        stopForeground(STOP_FOREGROUND_REMOVE)
 
         notification?.notificationManager?.cancelAll()
 
@@ -173,6 +174,7 @@ class StayAwakeService : Service() {
             .putBoolean(getString(R.string.is_stay_awake_active_text), false).apply()
 
         stopStayAwake()
+        stopSelf()
 
     }
 
@@ -193,7 +195,7 @@ class StayAwakeService : Service() {
         stopVpn()
     }
 
-    override fun onBind(p0: Intent?): IBinder? {
+    override fun onBind(p0: Intent?): IBinder {
         return mBinder
     }
 

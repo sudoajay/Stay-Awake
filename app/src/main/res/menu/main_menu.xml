@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/darkMode_optionMenu"
-        android:icon="@drawable/ic_dark_mode"
+        android:id="@+id/setting_optionMenu"
+        android:icon="@drawable/ic_settings"
         android:title="@string/darkMode_optionMenu"
         app:iconTint="@color/bottomNavigation_SelectedColor"
         app:showAsAction="ifRoom|collapseActionView" />

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-import com.sudoajay.stayawake.services.Command
+import com.sudoajay.stayawake.model.Command
 import com.sudoajay.stayawake.R
 import com.sudoajay.stayawake.ui.mainActivity.MainActivity
 import com.sudoajay.stayawake.helper.FlashlightProvider

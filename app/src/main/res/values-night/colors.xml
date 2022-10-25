@@ -3,8 +3,8 @@
     <!--    App Theme Color-->
     <color name="colorPrimaryDark">#101010</color>
     <color name="colorPrimary">#101010</color>
-    <color name="colorAccent">#5271ff</color>
-    <color name="appTheme">#5271ff</color>
+    <color name="colorAccent">#74A0EE</color>
+    <color name="appTheme">#74A0EE</color>
 
     <!--    Activity-->
     <color name="statusBarColor">#101010</color>

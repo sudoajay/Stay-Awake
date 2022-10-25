@@ -1,12 +1,17 @@
 package com.sudoajay.stayawake.ui.mainActivity
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.sudoajay.stayawake.helper.FlashlightProvider
 import com.sudoajay.stayawake.helper.Stroboscope
+import com.sudoajay.stayawake.ui.MainApplication
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
+
+class MainActivityViewModel (application: Application) : AndroidViewModel(application) {
 
     val flashLight: MutableLiveData<Boolean> = MutableLiveData()
     val sos: MutableLiveData<Boolean> = MutableLiveData()
@@ -25,16 +30,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         stro.startCoroutineTimer()
     }
 
-    fun setFlashlight() {
-        flashLight.value = if (flashLight.value!!) {
-            flash.turnFlashlightOff()
 
-        } else {
-            flash.turnFlashlightOn()
-        }
-        sos.value = false
-        displayController.value = false
-    }
     private fun loadFlashlight() {
         flashLight.value = false
     }
@@ -71,5 +67,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         sos.value = false
         displayController.value= false
     }
+
+
 
 }

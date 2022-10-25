@@ -62,27 +62,57 @@
     <string name="rate_use_text">Rate-Us</string>
     <string name="more_app_text">More App</string>
     <string name="about_app_text">About App</string>
-    <string name="start_on_boot_text">Start on Boot</string>
-    <string name="start_on_boot_summary_text">Screen will never sleep while your phone tuned on</string>
+
     <string name="automatically_start_wifi_text">Automatically start (Wifi)</string>
-    <string name="start_wifi_summary_text">Screen will never sleep while connecting to wifi network</string>
+    <string name="start_wifi_summary_text">Screen Will Never Sleep While Connecting To Wifi Network</string>
     <string name="automatically_start_mobile_text">Automatically start (Mobile)</string>
-    <string name="start_mobile_summary_text">Screen will never sleep while connecting to mobile network</string>
+    <string name="start_mobile_summary_text">Screen Will Never Sleep While Connecting To Mobile Network</string>
     <string name="connected_usb_text">Connected Usb</string>
-    <string name="connected_usb_summary_text">Screen will never sleep while connecting to usb</string>
+    <string name="connected_usb_summary_text">Screen Will Never Sleep While Connecting To Usb</string>
     <string name="power_charging_text">Power(Charging)</string>
-    <string name="power_charging_summary_text">Screen will never sleep while Charging</string>
+    <string name="power_charging_summary_text">Screen Will Never Sleep While Charging</string>
+    <string name="power_low_text">Power(Low)</string>
+    <string name="power_low_summary_text">Screen Will Sleep While Battery Low</string>
+    <string name="power_saving_mode_text">Power(Saving Mode)</string>
+    <string name="power_saving_mode_summary_text">Screen Will Sleep While Battery Saving Mode</string>
     <string name="desk_dock_text">Desk Dock</string>
-    <string name="desk_dock_summary_text">Screen will never sleep while connecting to desk dock</string>
+    <string name="desk_dock_summary_text">Screen Will Never Sleep While Connecting To Desk Dock</string>
     <string name="car_dock_text">Car Dock</string>
-    <string name="car_dock_summary_text">Screen will never sleep while connecting to car dock</string>
+    <string name="car_dock_summary_text">Screen Will Never Sleep While Connecting To Car Dock</string>
+    <string name="otg_text">OTG Connect</string>
+    <string name="otg_summary_text">Screen Will Never Sleep While Connecting To OTG</string>
+
     <string name="show_notification_text">Show notification</string>
-    <string name="show_notification_summary_text">Allowing toggel on/off</string>
+    <string name="show_notification_summary_text">Allowing toggle on/off</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="share_app_summary_text">share the play store app link</string>
     <string name="rate_use_summary_text">express your experience through rating</string>
     <string name="more_app_summary_text">there is more app out there</string>
     <string name="about_app_summary_text">open github link</string>
+    <string name="always_text">Always</string>
+    <string name="always_summary_text">Screen Will Always Stay Awake</string>
+    <string name="display_setting_summary_text">Auto Sleep , Brightness etc</string>
+
+    <string name="start_on_boot_text">Start on Boot</string>
+    <string name="start_on_boot_summary_text">Screen Will Never Sleep While your Phone Tuned on</string>
+
+    <string name="reboot_devices_text">Start on Reboot</string>
+    <string name="reboot_devices_summary_text">Screen Will Never Sleep While your Phone Reboot</string>
+
+    <string name="bluetooth_devices_text">Bluetooth Devices</string>
+    <string name="bluetooth_devices_summary_text">Screen Will Never Sleep While Connecting To Bluetooth Devices</string>
+
+    <string name="nfc_connect_text">NFC Connect</string>
+    <string name="nfc_connect_summary_text">Screen Will Never Sleep While Connecting To NFC</string>
+
+    <string name="airplane_mode_text">Airplane Mode</string>
+    <string name="airplane_mode_summary_text">Screen Will Sleep While Phone In Airplane Mode</string>
+
+    <string name="do_not_disturb_mode_text">Do-Not-Disturb Mode</string>
+    <string name="do_not_disturb_summary_text">Screen Will Sleep While Phone In Do-Not-Disturb Mode</string>
+
+    <string name="device_timeout_text">Device Timeout </string>
+    <string name="device_timeout_summary_text">Set The Timer According To Your Work</string>
 
     <!--    Network Provider-->
     <string name="wifi_text">Wifi</string>
@@ -183,6 +213,24 @@
     <string name="turkish_text" translatable="true">Turkish</string>
     <string name="vietnamese_text" translatable="true">Vietnamese</string>
     <string name="chinese_text" translatable="true">Chinese</string>
+
+
+
+
+<!--    Home top menu -->
+    <string name="search_optionMenu" translatable="false">Search</string>
+    <string name="sort_optionMenu" translatable="false">Sort</string>
+
+
+    <!--    Click back to exit-->
+    <string name="click_back_text" translatable="true">Click Back Again To Exit</string>
+
+<!--    Push notifcation -->
+    <string name="you_are_a_sports_junkie_text" translatable="true">You\'re a scanning legend!</string>
+    <string name="wouldnt_you_love_to_stay_text" translatable="true">Would\'t you feel special when we push out new features and many other exciting things and you\'re the first one to get notified? Sure you would. Press the Get Notified button below and stay ahead of others. </string>
+    <string name="skip_text" translatable="true">Skip</string>
+    <string name="get_notified_text" translatable="true">Get Notified</string>
+    <string name="permission_not_granted_by_the_user_text" translatable="true">Permissions not granted by the user.</string>
 
 
 
